@@ -184,4 +184,7 @@ public interface ErrorCodeConstants {
     ErrorCode PRODUCTION_PLAN_PARENT_ERROR = new ErrorCode(1_002_037_000, "不能设置自己为父生产计划");
     ErrorCode PRODUCTION_PLAN_NAME_DUPLICATE = new ErrorCode(1_002_038_000, "已经存在该计划名称的生产计划");
     ErrorCode PRODUCTION_PLAN_PARENT_IS_CHILD = new ErrorCode(1_002_039_000, "不能设置自己的子ProductionPlan为父ProductionPlan");
+
+    // ========== 现场生产日报 TODO 补充编号 ==========
+    ErrorCode PRODUCTION_DAILY_REPORT_NOT_EXISTS = new ErrorCode(1_002_040_000, "现场生产日报不存在");
 }
