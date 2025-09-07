@@ -24,4 +24,15 @@ public class ErpProductPageReqVO extends PageParam {
     @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
     private LocalDateTime[] createTime;
 
+    // ========== 备件管理扩展字段 ==========
+    
+    @Schema(description = "备件类型", example = "1")
+    private Integer sparePartType;
+
+    @Schema(description = "关联设备ID", example = "1")
+    private Long equipmentId;
+
+    @Schema(description = "是否只查询有备件类型的产品", example = "true")
+    private Boolean hasSparePartType;
+
 }

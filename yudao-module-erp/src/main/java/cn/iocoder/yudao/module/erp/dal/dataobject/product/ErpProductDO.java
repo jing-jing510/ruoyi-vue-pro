@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import com.baomidou.mybatisplus.annotation.TableField;
 
 /**
  * ERP 产品 DO
@@ -82,5 +84,67 @@ public class ErpProductDO extends BaseDO {
      * 最低价格，单位：元
      */
     private BigDecimal minPrice;
+
+    // ========== 备件管理扩展字段 ==========
+    
+    /**
+     * 关联设备ID (关联coal_equipment_info.id)
+     */
+    @TableField("equipment_id")
+    private Long equipmentId;
+    
+    /**
+     * 备件类型：1易损件 2关键件 3标准件
+     */
+    @TableField("spare_part_type")
+    private Integer sparePartType;
+    
+    /**
+     * 最低库存预警数量
+     */
+    @TableField("min_stock")
+    private BigDecimal minStock;
+    
+    /**
+     * 最高库存数量
+     */
+    @TableField("max_stock")
+    private BigDecimal maxStock;
+    
+    /**
+     * 安全库存数量
+     */
+    @TableField("safety_stock")
+    private BigDecimal safetyStock;
+    
+    /**
+     * 主要供应商ID (关联erp_supplier.id)
+     */
+    @TableField("supplier_id")
+    private Long supplierId;
+    
+    /**
+     * 供应商名称
+     */
+    @TableField("supplier_name")
+    private String supplierName;
+    
+    /**
+     * 更换周期(天)
+     */
+    @TableField("replacement_cycle")
+    private Integer replacementCycle;
+    
+    /**
+     * 最后更换日期
+     */
+    @TableField("last_replacement_date")
+    private LocalDate lastReplacementDate;
+    
+    /**
+     * 下次更换日期
+     */
+    @TableField("next_replacement_date")
+    private LocalDate nextReplacementDate;
 
 }

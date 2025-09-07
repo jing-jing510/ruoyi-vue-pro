@@ -217,4 +217,12 @@ public interface ErrorCodeConstants {
     ErrorCode EQUIPMENT_INFO_PARENT_ERROR = new ErrorCode(1_002_058_000, "不能设置自己为父设备档案");
     ErrorCode EQUIPMENT_INFO_EQUIPMENT_NAME_DUPLICATE = new ErrorCode(1_002_059_000, "已经存在该设备名称的设备档案");
     ErrorCode EQUIPMENT_INFO_PARENT_IS_CHILD = new ErrorCode(1_002_060_000, "不能设置自己的子EquipmentInfo为父EquipmentInfo");
+
+    // ========== 备件设备关联 1-010-001-000 ==========
+    ErrorCode SPARE_PART_EQUIPMENT_NOT_EXISTS = new ErrorCode(1_010_001_000, "备件设备关联不存在");
+    ErrorCode SPARE_PART_EQUIPMENT_ALREADY_EXISTS = new ErrorCode(1_010_001_001, "备件设备关联已存在");
+
+    // ========== 备件预警 1-010-002-000 ==========
+    ErrorCode SPARE_PART_ALERT_NOT_EXISTS = new ErrorCode(1_010_002_000, "备件预警记录不存在");
+    ErrorCode SPARE_PART_ALERT_ALREADY_HANDLED = new ErrorCode(1_010_002_001, "备件预警已处理");
 }

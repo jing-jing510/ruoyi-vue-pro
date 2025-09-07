@@ -18,11 +18,21 @@ import java.util.List;
 public interface ErpProductMapper extends BaseMapperX<ErpProductDO> {
 
     default PageResult<ErpProductDO> selectPage(ErpProductPageReqVO reqVO) {
-        return selectPage(reqVO, new LambdaQueryWrapperX<ErpProductDO>()
+        LambdaQueryWrapperX<ErpProductDO> query = new LambdaQueryWrapperX<ErpProductDO>()
                 .likeIfPresent(ErpProductDO::getName, reqVO.getName())
                 .eqIfPresent(ErpProductDO::getCategoryId, reqVO.getCategoryId())
                 .betweenIfPresent(ErpProductDO::getCreateTime, reqVO.getCreateTime())
-                .orderByDesc(ErpProductDO::getId));
+                // 备件管理扩展查询条件
+                .eqIfPresent(ErpProductDO::getSparePartType, reqVO.getSparePartType())
+                .eqIfPresent(ErpProductDO::getEquipmentId, reqVO.getEquipmentId())
+                .orderByDesc(ErpProductDO::getId);
+        
+        // 如果传入了hasSparePartType标志，只查询有备件类型的产品
+        if (reqVO.getHasSparePartType() != null && reqVO.getHasSparePartType()) {
+            query.isNotNull(ErpProductDO::getSparePartType);
+        }
+        
+        return selectPage(reqVO, query);
     }
 
     default Long selectCountByCategoryId(Long categoryId) {

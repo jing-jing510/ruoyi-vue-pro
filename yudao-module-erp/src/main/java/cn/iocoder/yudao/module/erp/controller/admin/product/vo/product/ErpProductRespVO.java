@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Schema(description = "管理后台 - ERP 产品 Response VO")
 @Data
@@ -72,5 +73,53 @@ public class ErpProductRespVO {
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("创建时间")
     private LocalDateTime createTime;
+
+    // ========== 备件管理扩展字段 ==========
+    
+    @Schema(description = "关联设备ID", example = "1")
+    private Long equipmentId;
+    
+    @Schema(description = "关联设备名称", example = "破碎机")
+    @ExcelProperty("关联设备")
+    private String equipmentName;
+    
+    @Schema(description = "备件类型", example = "1")
+    @ExcelProperty("备件类型")
+    private Integer sparePartType;
+    
+    @Schema(description = "最低库存", example = "10.00")
+    @ExcelProperty("最低库存")
+    private BigDecimal minStock;
+    
+    @Schema(description = "最高库存", example = "100.00")
+    @ExcelProperty("最高库存")
+    private BigDecimal maxStock;
+    
+    @Schema(description = "安全库存", example = "20.00")
+    @ExcelProperty("安全库存")
+    private BigDecimal safetyStock;
+    
+    @Schema(description = "主要供应商ID", example = "1")
+    private Long supplierId;
+    
+    @Schema(description = "供应商名称", example = "XX轴承厂")
+    @ExcelProperty("供应商")
+    private String supplierName;
+    
+    @Schema(description = "更换周期(天)", example = "30")
+    @ExcelProperty("更换周期(天)")
+    private Integer replacementCycle;
+    
+    @Schema(description = "最后更换日期", example = "2024-01-01")
+    @ExcelProperty("最后更换日期")
+    private LocalDate lastReplacementDate;
+    
+    @Schema(description = "下次更换日期", example = "2024-02-01")
+    @ExcelProperty("下次更换日期")
+    private LocalDate nextReplacementDate;
+    
+    @Schema(description = "当前库存", example = "50.00")
+    @ExcelProperty("当前库存")
+    private BigDecimal currentStock;
 
 }
