@@ -187,4 +187,34 @@ public interface ErrorCodeConstants {
 
     // ========== 现场生产日报 TODO 补充编号 ==========
     ErrorCode PRODUCTION_DAILY_REPORT_NOT_EXISTS = new ErrorCode(1_002_040_000, "现场生产日报不存在");
+
+    // ========== 班制与班次设置 (树表) TODO 补充编号 ==========
+    ErrorCode SHIFT_SYSTEM_NOT_EXISTS = new ErrorCode(1_002_041_000, "班制与班次设置 (树表)不存在");
+    ErrorCode SHIFT_SYSTEM_EXITS_CHILDREN = new ErrorCode(1_002_042_000, "存在存在子班制与班次设置 (树表)，无法删除");
+    ErrorCode SHIFT_SYSTEM_PARENT_NOT_EXITS = new ErrorCode(1_002_043_000,"父级班制与班次设置 (树表)不存在");
+    ErrorCode SHIFT_SYSTEM_PARENT_ERROR = new ErrorCode(1_002_044_000, "不能设置自己为父班制与班次设置 (树表)");
+    ErrorCode SHIFT_SYSTEM_NAME_DUPLICATE = new ErrorCode(1_002_045_000, "已经存在该名称 的班制与班次设置 (树表)");
+    ErrorCode SHIFT_SYSTEM_PARENT_IS_CHILD = new ErrorCode(1_002_046_000, "不能设置自己的子ShiftSystem为父ShiftSystem");
+
+
+
+    // ========== 排班管理 (主表) TODO 补充编号 ==========
+    ErrorCode SCHEDULE_NOT_EXISTS = new ErrorCode(1_002_047_000, "排班管理 (主表)不存在");
+    ErrorCode SCHEDULE_STAFF_NOT_EXISTS = new ErrorCode(1_002_048_000, "人员安排 (子表)不存在");
+
+    // ========== 设备分类表 (树表) TODO 补充编号 ==========
+    ErrorCode EQUIPMENT_CATEGORY_NOT_EXISTS = new ErrorCode(1_002_049_000, "设备分类表 (树表)不存在");
+    ErrorCode EQUIPMENT_CATEGORY_EXITS_CHILDREN = new ErrorCode(1_002_050_000, "存在存在子设备分类表 (树表)，无法删除");
+    ErrorCode EQUIPMENT_CATEGORY_PARENT_NOT_EXITS = new ErrorCode(1_002_051_000,"父级设备分类表 (树表)不存在");
+    ErrorCode EQUIPMENT_CATEGORY_PARENT_ERROR = new ErrorCode(1_002_052_000, "不能设置自己为父设备分类表 (树表)");
+    ErrorCode EQUIPMENT_CATEGORY_CATEGORY_NAME_DUPLICATE = new ErrorCode(1_002_053_000, "已经存在该分类名称的设备分类表 (树表)");
+    ErrorCode EQUIPMENT_CATEGORY_PARENT_IS_CHILD = new ErrorCode(1_002_054_000, "不能设置自己的子EquipmentCategory为父EquipmentCategory");
+
+    // ========== 设备档案 TODO 补充编号 ==========
+    ErrorCode EQUIPMENT_INFO_NOT_EXISTS = new ErrorCode(1_002_055_000, "设备档案不存在");
+    ErrorCode EQUIPMENT_INFO_EXITS_CHILDREN = new ErrorCode(1_002_056_000, "存在存在子设备档案，无法删除");
+    ErrorCode EQUIPMENT_INFO_PARENT_NOT_EXITS = new ErrorCode(1_002_057_000,"父级设备档案不存在");
+    ErrorCode EQUIPMENT_INFO_PARENT_ERROR = new ErrorCode(1_002_058_000, "不能设置自己为父设备档案");
+    ErrorCode EQUIPMENT_INFO_EQUIPMENT_NAME_DUPLICATE = new ErrorCode(1_002_059_000, "已经存在该设备名称的设备档案");
+    ErrorCode EQUIPMENT_INFO_PARENT_IS_CHILD = new ErrorCode(1_002_060_000, "不能设置自己的子EquipmentInfo为父EquipmentInfo");
 }

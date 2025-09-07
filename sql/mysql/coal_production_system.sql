@@ -201,4 +201,233 @@ CREATE TABLE `coal_shift_config` (
 INSERT INTO `coal_shift_config` (`name`, `code`, `start_time`, `end_time`, `shift_type`, `is_production`, `sort`, `status`, `creator`) VALUES
 ('早班', 'MORNING', '08:00:00', '16:00:00', 1, b'1', 1, 1, 'system'),
 ('中班', 'AFTERNOON', '16:00:00', '00:00:00', 1, b'1', 2, 1, 'system'),
-('夜班', 'NIGHT', '00:00:00', '08:00:00', 1, b'1', 3, 1, 'system');
+('夜班', 'NIGHT', '00:00:00', '08:00:00', 1, b'1', 3, 1, 'system'),
+('检修班', 'MAINTENANCE', '08:00:00', '17:00:00', 2, b'0', 4, 1, 'system'),
+('值班', 'DUTY', '08:00:00', '08:00:00', 3, b'0', 5, 1, 'system');
+
+-- ----------------------------
+-- 4. 班制与班次设置表（树表结构）
+-- ----------------------------
+DROP TABLE IF EXISTS `coal_shift_system`;
+CREATE TABLE `coal_shift_system` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `parent_id` BIGINT NOT NULL DEFAULT 0 COMMENT '父ID (0=班制, >0=班次)',
+    `name` VARCHAR(50) NOT NULL COMMENT '名称 (班制或班次名)',
+    `code` VARCHAR(20) NULL COMMENT '编码 (班次编码)',
+    `is_production` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否生产班制 (仅班制层级有效)',
+    `start_time` TIME NULL COMMENT '开始时间 (仅班次层级有效) - 格式：HH:mm:ss',
+    `end_time` TIME NULL COMMENT '结束时间 (仅班次层级有效) - 格式：HH:mm:ss',
+    `shift_type` TINYINT NULL COMMENT '班次类型：1生产班 2检修班 3值班 (仅班次层级有效)',
+    `sort` INT NOT NULL DEFAULT 0 COMMENT '排序',
+    `status` TINYINT NOT NULL DEFAULT 1 COMMENT '状态：0禁用 1启用',
+    `creator` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '创建者',
+    `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updater` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '更新者',
+    `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `deleted` BIT(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` BIGINT NOT NULL DEFAULT 0 COMMENT '租户编号',
+    PRIMARY KEY (`id`) USING BTREE,
+    INDEX `idx_parent_id` (`parent_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '班制与班次设置 (树表)';
+
+-- ----------------------------
+-- 5. 排班管理表（主表）
+-- ----------------------------
+DROP TABLE IF EXISTS `coal_schedule`;
+CREATE TABLE `coal_schedule` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '排班ID',
+    `schedule_date` DATE NOT NULL COMMENT '排班日期',
+    `shift_system_id` BIGINT NOT NULL COMMENT '班制ID (关联coal_shift_system)',
+    `schedule_status` TINYINT NOT NULL DEFAULT 1 COMMENT '排班状态：1正常 2调整 3取消',
+    `is_production_day` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否生产日：1是 0否',
+    `production_target` DECIMAL(10,2) NULL COMMENT '当日生产目标(吨)',
+    `schedule_type` TINYINT NOT NULL DEFAULT 1 COMMENT '排班类型：1正常排班 2节假日排班 3应急排班',
+    `approver_id` BIGINT NULL COMMENT '审批人ID',
+    `approve_time` DATETIME NULL COMMENT '审批时间',
+    `remark` VARCHAR(500) NULL COMMENT '备注',
+    `creator` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '创建者',
+    `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updater` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '更新者',
+    `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `deleted` BIT(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` BIGINT NOT NULL DEFAULT 0 COMMENT '租户编号',
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE KEY `uk_date` (`schedule_date`, `deleted`) USING BTREE,
+    INDEX `idx_shift_system` (`shift_system_id`) USING BTREE,
+    INDEX `idx_schedule_date` (`schedule_date`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '排班管理 (主表)';
+
+-- ----------------------------
+-- 6. 人员安排表（子表）
+-- ----------------------------
+DROP TABLE IF EXISTS `coal_schedule_staff`;
+CREATE TABLE `coal_schedule_staff` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '人员安排ID',
+    `schedule_id` BIGINT NOT NULL COMMENT '排班ID (关联主表)',
+    `shift_id` BIGINT NOT NULL COMMENT '班次ID (关联coal_shift_system的子节点)',
+    `user_id` BIGINT NOT NULL COMMENT '员工ID',
+    `position_type` TINYINT NOT NULL COMMENT '岗位类型：1调度员 2操作工 3检修工 4安全员 5质检员',
+    `is_leader` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否班组长',
+    `is_substitute` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '是否替班：1是 0否',
+    `substitute_reason` VARCHAR(200) NULL COMMENT '替班原因',
+    `work_status` TINYINT NOT NULL DEFAULT 1 COMMENT '工作状态：1正常 2请假 3调休 4替班',
+    `contact_phone` VARCHAR(20) NULL COMMENT '联系电话',
+    `emergency_contact` VARCHAR(50) NULL COMMENT '紧急联系人',
+    `emergency_phone` VARCHAR(20) NULL COMMENT '紧急联系电话',
+    `creator` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '创建者',
+    `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updater` VARCHAR(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '' COMMENT '更新者',
+    `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `deleted` BIT(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+    `tenant_id` BIGINT NOT NULL DEFAULT 0 COMMENT '租户编号',
+    PRIMARY KEY (`id`) USING BTREE,
+    INDEX `idx_schedule` (`schedule_id`) USING BTREE,
+    INDEX `idx_shift` (`shift_id`) USING BTREE,
+    INDEX `idx_user` (`user_id`) USING BTREE,
+    INDEX `idx_position` (`position_type`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '人员安排 (子表)';
+
+-- ----------------------------
+-- 初始化班制与班次数据
+-- ----------------------------
+-- 1. 三班两倒班制
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES (0, '三班两倒', 'THREE_SHIFT', 1, NULL, NULL, NULL, 1, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+SET @three_shift_id = LAST_INSERT_ID();
+
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES 
+(@three_shift_id, '早班', 'MORNING', 0, '08:00:00', '16:00:00', 1, 1, 1, 'system', NOW(), 'system', NOW(), 0, 1),
+(@three_shift_id, '中班', 'AFTERNOON', 0, '16:00:00', '00:00:00', 1, 2, 1, 'system', NOW(), 'system', NOW(), 0, 1),
+(@three_shift_id, '夜班', 'NIGHT', 0, '00:00:00', '08:00:00', 1, 3, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+-- 2. 四班三倒班制
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES (0, '四班三倒', 'FOUR_SHIFT', 1, NULL, NULL, NULL, 2, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+SET @four_shift_id = LAST_INSERT_ID();
+
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES 
+(@four_shift_id, '甲班', 'SHIFT_A', 0, '08:00:00', '16:00:00', 1, 1, 1, 'system', NOW(), 'system', NOW(), 0, 1),
+(@four_shift_id, '乙班', 'SHIFT_B', 0, '16:00:00', '00:00:00', 1, 2, 1, 'system', NOW(), 'system', NOW(), 0, 1),
+(@four_shift_id, '丙班', 'SHIFT_C', 0, '00:00:00', '08:00:00', 1, 3, 1, 'system', NOW(), 'system', NOW(), 0, 1),
+(@four_shift_id, '丁班', 'SHIFT_D', 0, '08:00:00', '16:00:00', 1, 4, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+-- 3. 两班倒班制
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES (0, '两班倒', 'TWO_SHIFT', 1, NULL, NULL, NULL, 3, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+SET @two_shift_id = LAST_INSERT_ID();
+
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES 
+(@two_shift_id, '白班', 'DAY_SHIFT', 0, '08:00:00', '20:00:00', 1, 1, 1, 'system', NOW(), 'system', NOW(), 0, 1),
+(@two_shift_id, '夜班', 'NIGHT_SHIFT', 0, '20:00:00', '08:00:00', 1, 2, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+-- 4. 长白班班制
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES (0, '长白班', 'DAY_WORK', 1, NULL, NULL, NULL, 4, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+SET @day_work_id = LAST_INSERT_ID();
+
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES 
+(@day_work_id, '白班', 'DAY_SHIFT', 0, '08:00:00', '17:00:00', 1, 1, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+-- 5. 检修班制（非生产班）
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES (0, '检修班制', 'MAINTENANCE', 0, NULL, NULL, NULL, 5, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+SET @maintenance_id = LAST_INSERT_ID();
+
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES 
+(@maintenance_id, '检修班', 'MAINTENANCE_SHIFT', 0, '08:00:00', '17:00:00', 2, 1, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+-- 6. 值班班制（非生产班）
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES (0, '值班班制', 'DUTY', 0, NULL, NULL, NULL, 6, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+SET @duty_id = LAST_INSERT_ID();
+
+INSERT INTO coal_shift_system (parent_id, name, code, is_production, start_time, end_time, shift_type, sort, status, creator, create_time, updater, update_time, deleted, tenant_id) 
+VALUES 
+(@duty_id, '值班', 'DUTY_SHIFT', 0, '08:00:00', '08:00:00', 3, 1, 1, 'system', NOW(), 'system', NOW(), 0, 1);
+
+-- ----------------------------
+-- 字典数据配置
+-- ----------------------------
+
+-- 班次类型字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('班次类型', 'shift_type', 0, '班次类型', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '生产班', '1', 'shift_type', 0, '1', NOW(), '1', NOW()),
+(2, '检修班', '2', 'shift_type', 0, '1', NOW(), '1', NOW()),
+(3, '值班', '3', 'shift_type', 0, '1', NOW(), '1', NOW());
+
+-- 是否生产班制字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('是否生产班制', 'is_production', 0, '是否生产班制', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '否', '0', 'is_production', 0, '1', NOW(), '1', NOW()),
+(2, '是', '1', 'is_production', 0, '1', NOW(), '1', NOW());
+
+-- 岗位类型字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('岗位类型', 'position_type', 0, '排班岗位类型', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '调度员', '1', 'position_type', 0, '1', NOW(), '1', NOW()),
+(2, '操作工', '2', 'position_type', 0, '1', NOW(), '1', NOW()),
+(3, '检修工', '3', 'position_type', 0, '1', NOW(), '1', NOW()),
+(4, '安全员', '4', 'position_type', 0, '1', NOW(), '1', NOW()),
+(5, '质检员', '5', 'position_type', 0, '1', NOW(), '1', NOW());
+
+-- 排班状态字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('排班状态', 'schedule_status', 0, '排班状态', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '正常', '1', 'schedule_status', 0, '1', NOW(), '1', NOW()),
+(2, '调整', '2', 'schedule_status', 0, '1', NOW(), '1', NOW()),
+(3, '取消', '3', 'schedule_status', 0, '1', NOW(), '1', NOW());
+
+-- 排班类型字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('排班类型', 'schedule_type', 0, '排班类型', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '正常排班', '1', 'schedule_type', 0, '1', NOW(), '1', NOW()),
+(2, '节假日排班', '2', 'schedule_type', 0, '1', NOW(), '1', NOW()),
+(3, '应急排班', '3', 'schedule_type', 0, '1', NOW(), '1', NOW());
+
+-- 工作状态字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('工作状态', 'work_status', 0, '员工工作状态', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '正常', '1', 'work_status', 0, '1', NOW(), '1', NOW()),
+(2, '请假', '2', 'work_status', 0, '1', NOW(), '1', NOW()),
+(3, '调休', '3', 'work_status', 0, '1', NOW(), '1', NOW()),
+(4, '替班', '4', 'work_status', 0, '1', NOW(), '1', NOW());
+
+-- 是否生产日字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('是否生产日', 'is_production_day', 0, '是否生产日', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '否', '0', 'is_production_day', 0, '1', NOW(), '1', NOW()),
+(2, '是', '1', 'is_production_day', 0, '1', NOW(), '1', NOW());
+
+-- 是否班组长字典
+INSERT INTO `system_dict_type` (`name`, `type`, `status`, `remark`, `creator`, `create_time`, `updater`, `update_time`, `deleted`) VALUES 
+('是否班组长', 'is_leader', 0, '是否班组长', '1', NOW(), '1', NOW(), 0);
+
+INSERT INTO `system_dict_data` (`sort`, `label`, `value`, `dict_type`, `status`, `creator`, `create_time`, `updater`, `update_time`) VALUES
+(1, '否', '0', 'is_leader', 0, '1', NOW(), '1', NOW()),
+(2, '是', '1', 'is_leader', 0, '1', NOW(), '1', NOW());
