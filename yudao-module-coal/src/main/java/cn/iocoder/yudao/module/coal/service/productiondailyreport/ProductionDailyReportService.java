@@ -59,4 +59,11 @@ public interface ProductionDailyReportService {
      */
     PageResult<ProductionDailyReportDO> getProductionDailyReportPage(ProductionDailyReportPageReqVO pageReqVO);
 
+    /**
+     * 获得生产日报统计信息
+     *
+     * @return 生产日报统计信息
+     */
+    ProductionDailyReportStatisticsRespVO getProductionDailyReportStatistics();
+
 }

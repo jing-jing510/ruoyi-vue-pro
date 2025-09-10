@@ -520,6 +520,11 @@ public class AdminUserServiceImpl implements AdminUserService {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 
+    @Override
+    public Long getUserCount() {
+        return userMapper.selectCount();
+    }
+
     /**
      * 对密码进行加密
      *

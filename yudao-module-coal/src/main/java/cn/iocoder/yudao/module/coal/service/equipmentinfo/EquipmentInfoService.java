@@ -6,6 +6,7 @@ import cn.iocoder.yudao.module.coal.dal.dataobject.equipmentinfo.EquipmentInfoDO
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 设备档案 Service 接口
@@ -52,5 +53,20 @@ public interface EquipmentInfoService {
      * @return 设备档案列表
      */
     List<EquipmentInfoDO> getEquipmentInfoList(EquipmentInfoListReqVO listReqVO);
+
+    /**
+     * 根据设备IDs获取设备名称映射
+     *
+     * @param equipmentIds 设备ID列表
+     * @return 设备ID -> 设备名称的映射
+     */
+    Map<Long, String> getEquipmentNameMap(List<Long> equipmentIds);
+
+    /**
+     * 获得设备档案简单列表，用于下拉选择
+     *
+     * @return 设备档案简单列表
+     */
+    List<EquipmentInfoDO> getSimpleEquipmentList();
 
 }

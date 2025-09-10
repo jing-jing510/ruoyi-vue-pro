@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static cn.iocoder.yudao.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
@@ -86,6 +87,22 @@ public class EquipmentInfoController {
         // 导出 Excel
         ExcelUtils.write(response, "设备档案.xls", "数据", EquipmentInfoRespVO.class,
                         BeanUtils.toBean(list, EquipmentInfoRespVO.class));
+    }
+
+    @GetMapping("/get-names")
+    @Operation(summary = "根据设备IDs获取设备名称映射")
+    @PreAuthorize("@ss.hasPermission('coal:equipment-info:query')")
+    public CommonResult<Map<Long, String>> getEquipmentNames(@RequestParam("ids") List<Long> ids) {
+        Map<Long, String> equipmentNameMap = equipmentInfoService.getEquipmentNameMap(ids);
+        return success(equipmentNameMap);
+    }
+
+    @GetMapping("/simple-list")
+    @Operation(summary = "获得设备档案简单列表，用于下拉选择")
+    @PreAuthorize("@ss.hasPermission('coal:equipment-info:query')")
+    public CommonResult<List<EquipmentInfoRespVO>> getSimpleEquipmentList() {
+        List<EquipmentInfoDO> list = equipmentInfoService.getSimpleEquipmentList();
+        return success(BeanUtils.toBean(list, EquipmentInfoRespVO.class));
     }
 
 }

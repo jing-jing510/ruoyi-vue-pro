@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.iocoder.yudao.module.system.enums.ErrorCodeConstants.*;
@@ -131,6 +134,26 @@ public class EquipmentInfoServiceImpl implements EquipmentInfoService {
     @Override
     public List<EquipmentInfoDO> getEquipmentInfoList(EquipmentInfoListReqVO listReqVO) {
         return equipmentInfoMapper.selectList(listReqVO);
+    }
+
+    @Override
+    public Map<Long, String> getEquipmentNameMap(List<Long> equipmentIds) {
+        if (equipmentIds == null || equipmentIds.isEmpty()) {
+            return Collections.emptyMap();
+        }
+        
+        List<EquipmentInfoDO> equipmentList = equipmentInfoMapper.selectByIds(equipmentIds);
+        return equipmentList.stream()
+                .collect(Collectors.toMap(
+                        EquipmentInfoDO::getId,
+                        EquipmentInfoDO::getEquipmentName,
+                        (existing, replacement) -> existing // 如果有重复key，保留现有值
+                ));
+    }
+
+    @Override
+    public List<EquipmentInfoDO> getSimpleEquipmentList() {
+        return equipmentInfoMapper.selectList();
     }
 
 }

@@ -218,11 +218,90 @@ public interface ErrorCodeConstants {
     ErrorCode EQUIPMENT_INFO_EQUIPMENT_NAME_DUPLICATE = new ErrorCode(1_002_059_000, "已经存在该设备名称的设备档案");
     ErrorCode EQUIPMENT_INFO_PARENT_IS_CHILD = new ErrorCode(1_002_060_000, "不能设置自己的子EquipmentInfo为父EquipmentInfo");
 
-    // ========== 备件设备关联 1-010-001-000 ==========
-    ErrorCode SPARE_PART_EQUIPMENT_NOT_EXISTS = new ErrorCode(1_010_001_000, "备件设备关联不存在");
-    ErrorCode SPARE_PART_EQUIPMENT_ALREADY_EXISTS = new ErrorCode(1_010_001_001, "备件设备关联已存在");
+    // ========== 备件分类表 (树表) TODO 补充编号 ==========
+    ErrorCode SPARE_PART_CATEGORY_NOT_EXISTS = new ErrorCode(1_002_061_000, "备件分类表 (树表)不存在");
+    ErrorCode SPARE_PART_CATEGORY_EXITS_CHILDREN = new ErrorCode(1_002_062_000, "存在存在子备件分类表 (树表)，无法删除");
+    ErrorCode SPARE_PART_CATEGORY_PARENT_NOT_EXITS = new ErrorCode(1_002_063_000,"父级备件分类表 (树表)不存在");
+    ErrorCode SPARE_PART_CATEGORY_PARENT_ERROR = new ErrorCode(1_002_064_000, "不能设置自己为父备件分类表 (树表)");
+    ErrorCode SPARE_PART_CATEGORY_CATEGORY_NAME_DUPLICATE = new ErrorCode(1_002_065_000, "已经存在该分类名称的备件分类表 (树表)");
+    ErrorCode SPARE_PART_CATEGORY_PARENT_IS_CHILD = new ErrorCode(1_002_066_000, "不能设置自己的子SparePartCategory为父SparePartCategory");
 
-    // ========== 备件预警 1-010-002-000 ==========
-    ErrorCode SPARE_PART_ALERT_NOT_EXISTS = new ErrorCode(1_010_002_000, "备件预警记录不存在");
-    ErrorCode SPARE_PART_ALERT_ALREADY_HANDLED = new ErrorCode(1_010_002_001, "备件预警已处理");
+    // ========== 备件基础信息 TODO 补充编号 ==========
+    ErrorCode SPARE_PART_INFO_NOT_EXISTS = new ErrorCode(1_002_067_000, "备件基础信息不存在");
+
+    // ========== 备件使用记录 TODO 补充编号 ==========
+    ErrorCode SPARE_PART_USAGE_RECORD_NOT_EXISTS = new ErrorCode(1_002_068_000, "备件使用记录不存在");
+
+    // ========== 备件预警记录 TODO 补充编号 ==========
+    ErrorCode SPARE_PART_ALERT_NOT_EXISTS = new ErrorCode(1_002_069_000, "备件预警记录不存在");
+    ErrorCode SPARE_PART_ALERT_ALREADY_SENT = new ErrorCode(1_002_069_001, "该预警通知已发送，无需重复发送");
+    ErrorCode SPARE_PART_ALERT_NO_RECIPIENTS = new ErrorCode(1_002_069_002, "该预警记录没有设置接收人，无法发送通知");
+    ErrorCode SPARE_PART_ALERT_SEND_FAILED = new ErrorCode(1_002_069_003, "发送预警通知失败");
+
+    // ========== 备件出入库记录 TODO 补充编号 ==========
+    ErrorCode SPARE_PART_INVENTORY_LOG_NOT_EXISTS = new ErrorCode(1_002_070_000, "备件出入库记录不存在");
+
+    // ========== 备件库存记录 TODO 补充编号 ==========
+    ErrorCode SPARE_PART_STOCK_NOT_EXISTS = new ErrorCode(1_002_071_000, "备件库存记录不存在");
+
+    // ========== 备件设备关联 TODO 补充编号 ==========
+    ErrorCode SPARE_PART_EQUIPMENT_NOT_EXISTS = new ErrorCode(1_002_072_000, "备件设备关联不存在");
+
+    // ========== 检修计划 TODO 补充编号 ==========
+    ErrorCode MAINTENANCE_PLAN_NOT_EXISTS = new ErrorCode(1_002_073_000, "检修计划不存在");
+
+    // ========== 检修单 TODO 补充编号 ==========
+    ErrorCode MAINTENANCE_ORDER_NOT_EXISTS = new ErrorCode(1_002_074_000, "检修单不存在");
+    ErrorCode MAINTENANCE_ORDER_ITEM_NOT_EXISTS = new ErrorCode(1_002_075_000, "检修项目明细不存在");
+
+    // ========== 报修单 TODO 补充编号 ==========
+    ErrorCode REPAIR_REQUEST_NOT_EXISTS = new ErrorCode(1_002_076_000, "报修单不存在");
+
+    // ========== 质量检测项目 TODO 补充编号 ==========
+    ErrorCode QUALITY_ITEM_NOT_EXISTS = new ErrorCode(1_002_077_000, "质量检测项目不存在");
+
+    // ========== 质量检测记录 TODO 补充编号 ==========
+    ErrorCode QUALITY_INSPECTION_NOT_EXISTS = new ErrorCode(1_002_077_000, "质量检测记录不存在");
+    ErrorCode QUALITY_DATA_NOT_EXISTS = new ErrorCode(1_002_077_000, "质量检测数据不存在");
+
+    // ========== 质量标准 TODO 补充编号 ==========
+    ErrorCode QUALITY_STANDARD_NOT_EXISTS = new ErrorCode(1_002_078_000, "质量标准不存在");
+
+    // ========== 质量预警记录 TODO 补充编号 ==========
+    ErrorCode QUALITY_ALERT_NOT_EXISTS = new ErrorCode(1_002_078_000, "质量预警记录不存在");
+
+    // ========== 安全检查分类 TODO 补充编号 ==========
+    ErrorCode SAFETY_CHECK_CATEGORY_NOT_EXISTS = new ErrorCode(1_002_079_000, "安全检查分类不存在");
+    ErrorCode SAFETY_CHECK_CATEGORY_EXITS_CHILDREN = new ErrorCode(1_002_080_000, "存在存在子安全检查分类，无法删除");
+    ErrorCode SAFETY_CHECK_CATEGORY_PARENT_NOT_EXITS = new ErrorCode(1_002_081_000,"父级安全检查分类不存在");
+    ErrorCode SAFETY_CHECK_CATEGORY_PARENT_ERROR = new ErrorCode(1_002_082_000, "不能设置自己为父安全检查分类");
+    ErrorCode SAFETY_CHECK_CATEGORY_CATEGORY_NAME_DUPLICATE = new ErrorCode(1_002_083_000, "已经存在该分类名称的安全检查分类");
+    ErrorCode SAFETY_CHECK_CATEGORY_PARENT_IS_CHILD = new ErrorCode(1_002_084_000, "不能设置自己的子SafetyCheckCategory为父SafetyCheckCategory");
+
+    // ========== 安全检查记录 TODO 补充编号 ==========
+    ErrorCode SAFETY_CHECK_RECORD_NOT_EXISTS = new ErrorCode(1_002_085_000, "安全检查记录不存在");
+    ErrorCode SAFETY_CHECK_ITEM_NOT_EXISTS = new ErrorCode(1_002_086_000, "安全检查项目不存在");
+
+    // ========== 安全事故记录 TODO 补充编号 ==========
+    ErrorCode SAFETY_ACCIDENT_NOT_EXISTS = new ErrorCode(1_002_087_000, "安全事故记录不存在");
+
+    // ========== 安全附件 TODO 补充编号 ==========
+    ErrorCode SAFETY_ATTACHMENT_NOT_EXISTS = new ErrorCode(1_002_088_000, "安全附件不存在");
+
+    // ========== 安全检查计划 TODO 补充编号 ==========
+    ErrorCode SAFETY_CHECK_PLAN_NOT_EXISTS = new ErrorCode(1_002_089_000, "安全检查计划不存在");
+
+    // ========== 能源类型配置 TODO 补充编号 ==========
+    ErrorCode ENERGY_TYPE_NOT_EXISTS = new ErrorCode(1_002_090_000, "能源类型配置不存在");
+
+    // ========== 能源消耗统计 TODO 补充编号 ==========
+    ErrorCode ENERGY_STATISTICS_NOT_EXISTS = new ErrorCode(1_002_091_000, "能源消耗统计不存在");
+    // ========== 能源预警记录 TODO 补充编号 ==========
+    ErrorCode ENERGY_ALERT_NOT_EXISTS = new ErrorCode(1_002_092_000, "能源预警记录不存在");
+
+    // ========== 能源消耗记录 TODO 补充编号 ==========
+    ErrorCode ENERGY_CONSUMPTION_NOT_EXISTS = new ErrorCode(1_002_093_000, "能源消耗记录不存在");
+
+
+
 }

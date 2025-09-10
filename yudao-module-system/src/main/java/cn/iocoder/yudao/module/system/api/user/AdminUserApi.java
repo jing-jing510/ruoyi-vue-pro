@@ -86,4 +86,11 @@ public interface AdminUserApi {
      */
     void validateUserList(Collection<Long> ids);
 
+    /**
+     * 获取启用状态的用户数量
+     *
+     * @return 用户数量
+     */
+    Long getUserCount();
+
 }

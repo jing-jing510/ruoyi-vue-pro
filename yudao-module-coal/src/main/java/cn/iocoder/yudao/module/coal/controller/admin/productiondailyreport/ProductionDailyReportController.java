@@ -9,6 +9,7 @@ import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
 import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportPageReqVO;
 import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportRespVO;
 import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportSaveReqVO;
+import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportStatisticsRespVO;
 import cn.iocoder.yudao.module.coal.dal.dataobject.productiondailyreport.ProductionDailyReportDO;
 import cn.iocoder.yudao.module.coal.service.productiondailyreport.ProductionDailyReportService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -97,6 +98,14 @@ public class ProductionDailyReportController {
         // 导出 Excel
         ExcelUtils.write(response, "现场生产日报.xls", "数据", ProductionDailyReportRespVO.class,
                         BeanUtils.toBean(list, ProductionDailyReportRespVO.class));
+    }
+
+    @GetMapping("/statistics")
+    @Operation(summary = "获得生产日报统计信息，用于首页生产调度业务流程组件")
+    @PreAuthorize("@ss.hasPermission('coal:production-daily-report:query')")
+    public CommonResult<ProductionDailyReportStatisticsRespVO> getProductionDailyReportStatistics() {
+        ProductionDailyReportStatisticsRespVO statistics = productionDailyReportService.getProductionDailyReportStatistics();
+        return success(statistics);
     }
 
 }
