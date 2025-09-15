@@ -66,4 +66,11 @@ public interface ProductionDailyReportService {
      */
     ProductionDailyReportStatisticsRespVO getProductionDailyReportStatistics();
 
+    /**
+     * 获得生产计划进展统计信息
+     *
+     * @return 生产计划进展统计信息
+     */
+    ProductionPlanProgressRespVO getProductionPlanProgress();
+
 }

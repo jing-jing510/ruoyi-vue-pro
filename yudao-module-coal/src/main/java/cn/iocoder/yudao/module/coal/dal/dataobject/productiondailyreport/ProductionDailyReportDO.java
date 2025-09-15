@@ -266,5 +266,553 @@ public class ProductionDailyReportDO extends BaseDO {
      */
     private String reservedField5;
 
+    // ========== 新选煤厂字段 ==========
+    
+    // 皮带秤及产量统计字段
+    /**
+     * 201原煤皮带接班量(吨)
+     */
+    private BigDecimal beltScale201RawCoalHandoverIn;
+    /**
+     * 201原煤皮带交班量(吨)
+     */
+    private BigDecimal beltScale201RawCoalHandoverOut;
+    /**
+     * 201原煤皮带当班量(吨)
+     */
+    private BigDecimal beltScale201RawCoalCurrentShift;
+    /**
+     * 201原煤皮带月累计(吨)
+     */
+    private BigDecimal beltScale201RawCoalMonthlyTotal;
+
+    /**
+     * 701块精煤皮带秤接班量(吨)
+     */
+    private BigDecimal beltScale701BlockCleanHandoverIn;
+    /**
+     * 701块精煤皮带秤交班量(吨)
+     */
+    private BigDecimal beltScale701BlockCleanHandoverOut;
+    /**
+     * 701块精煤皮带秤当班量(吨)
+     */
+    private BigDecimal beltScale701BlockCleanCurrentShift;
+    /**
+     * 701块精煤皮带秤月累计(吨)
+     */
+    private BigDecimal beltScale701BlockCleanMonthlyTotal;
+    /**
+     * 701块精煤当班产率(%)
+     */
+    private BigDecimal beltScale701BlockCleanCurrentYield;
+    /**
+     * 701块精煤月度产率(%)
+     */
+    private BigDecimal beltScale701BlockCleanMonthlyYield;
+
+    /**
+     * 702末精煤皮带秤接班量(吨)
+     */
+    private BigDecimal beltScale702FineCleanHandoverIn;
+    /**
+     * 702末精煤皮带秤交班量(吨)
+     */
+    private BigDecimal beltScale702FineCleanHandoverOut;
+    /**
+     * 702末精煤皮带秤当班量(吨)
+     */
+    private BigDecimal beltScale702FineCleanCurrentShift;
+    /**
+     * 702末精煤皮带秤月累计(吨)
+     */
+    private BigDecimal beltScale702FineCleanMonthlyTotal;
+    /**
+     * 702末精煤当班产率(%)
+     */
+    private BigDecimal beltScale702FineCleanCurrentYield;
+    /**
+     * 702末精煤月度产率(%)
+     */
+    private BigDecimal beltScale702FineCleanMonthlyYield;
+
+    /**
+     * 压滤煤泥接班量(吨)
+     */
+    private BigDecimal filterPressSlimeHandoverIn;
+    /**
+     * 压滤煤泥交班量(吨)
+     */
+    private BigDecimal filterPressSlimeHandoverOut;
+    /**
+     * 压滤煤泥当班量(吨)
+     */
+    private BigDecimal filterPressSlimeCurrentShift;
+    /**
+     * 压滤煤泥月累计(吨)
+     */
+    private BigDecimal filterPressSlimeMonthlyTotal;
+    /**
+     * 压滤煤泥当班产率(%)
+     */
+    private BigDecimal filterPressSlimeCurrentYield;
+    /**
+     * 压滤煤泥月度产率(%)
+     */
+    private BigDecimal filterPressSlimeMonthlyYield;
+
+    /**
+     * 未入洗末原煤秤接班量(吨)
+     */
+    private BigDecimal unwashedFineRawCoalHandoverIn;
+    /**
+     * 未入洗末原煤秤交班量(吨)
+     */
+    private BigDecimal unwashedFineRawCoalHandoverOut;
+    /**
+     * 未入洗末原煤秤当班量(吨)
+     */
+    private BigDecimal unwashedFineRawCoalCurrentShift;
+    /**
+     * 未入洗末原煤秤月累计(吨)
+     */
+    private BigDecimal unwashedFineRawCoalMonthlyTotal;
+    /**
+     * 未入洗末原煤当班产率(%)
+     */
+    private BigDecimal unwashedFineRawCoalCurrentYield;
+    /**
+     * 未入洗末原煤月度产率(%)
+     */
+    private BigDecimal unwashedFineRawCoalMonthlyYield;
+
+    /**
+     * 901矸石量当班量(吨)
+     */
+    private BigDecimal gangue901CurrentShift;
+    /**
+     * 901矸石量月累计(吨)
+     */
+    private BigDecimal gangue901MonthlyTotal;
+    /**
+     * 901矸石当班产率(%)
+     */
+    private BigDecimal gangue901CurrentYield;
+    /**
+     * 901矸石月度产率(%)
+     */
+    private BigDecimal gangue901MonthlyYield;
+
+    /**
+     * 商品煤总重当班量(吨)
+     */
+    private BigDecimal commercialCoalTotalCurrentShift;
+    /**
+     * 商品煤总重月累计(吨)
+     */
+    private BigDecimal commercialCoalTotalMonthlyTotal;
+    /**
+     * 商品煤总重当班产率(%)
+     */
+    private BigDecimal commercialCoalTotalCurrentYield;
+    /**
+     * 商品煤总重月度产率(%)
+     */
+    private BigDecimal commercialCoalTotalMonthlyYield;
+
+    /**
+     * 电表数接班读数(kw*h)
+     */
+    private BigDecimal electricityMeterHandoverIn;
+    /**
+     * 电表数交班读数(kw*h)
+     */
+    private BigDecimal electricityMeterHandoverOut;
+    /**
+     * 电表数当班量(kw*h)
+     */
+    private BigDecimal electricityMeterCurrentShift;
+    /**
+     * 电表数月累计(kw*h)
+     */
+    private BigDecimal electricityMeterMonthlyTotal;
+    /**
+     * 电表数当班产率(%)
+     */
+    private BigDecimal electricityMeterCurrentYield;
+    /**
+     * 电表数月度产率(%)
+     */
+    private BigDecimal electricityMeterMonthlyYield;
+
+    /**
+     * 矿井清水表数接班读数(m³)
+     */
+    private BigDecimal mineCleanWaterHandoverIn;
+    /**
+     * 矿井清水表数交班读数(m³)
+     */
+    private BigDecimal mineCleanWaterHandoverOut;
+    /**
+     * 矿井清水表数当班量(m³)
+     */
+    private BigDecimal mineCleanWaterCurrentShift;
+    /**
+     * 矿井清水表数月累计(m³)
+     */
+    private BigDecimal mineCleanWaterMonthlyTotal;
+    /**
+     * 矿井清水当班产率(%)
+     */
+    private BigDecimal mineCleanWaterCurrentYield;
+    /**
+     * 矿井清水月度产率(%)
+     */
+    private BigDecimal mineCleanWaterMonthlyYield;
+
+    // 煤质情况字段
+    /**
+     * 原煤全水(%)
+     */
+    private BigDecimal rawCoalTotalMoisture;
+    /**
+     * 原煤灰分(%)
+     */
+    private BigDecimal rawCoalAshContent;
+    /**
+     * 原煤全硫(%)
+     */
+    private BigDecimal rawCoalTotalSulfur;
+    /**
+     * 原煤挥发分(%)
+     */
+    private BigDecimal rawCoalVolatileMatter;
+    /**
+     * 原煤低位发热量(kcal/kg)
+     */
+    private BigDecimal rawCoalLowerHeatingValue;
+
+    /**
+     * 筒仓大块全水(%)
+     */
+    private BigDecimal siloLargeLumpsTotalMoisture;
+    /**
+     * 筒仓大块灰分(%)
+     */
+    private BigDecimal siloLargeLumpsAshContent;
+    /**
+     * 筒仓大块全硫(%)
+     */
+    private BigDecimal siloLargeLumpsTotalSulfur;
+    /**
+     * 筒仓大块挥发分(%)
+     */
+    private BigDecimal siloLargeLumpsVolatileMatter;
+    /**
+     * 筒仓大块低位发热量(kcal/kg)
+     */
+    private BigDecimal siloLargeLumpsLowerHeatingValue;
+
+    /**
+     * 筒仓三八块全水(%)
+     */
+    private BigDecimal silo38LumpsTotalMoisture;
+    /**
+     * 筒仓三八块灰分(%)
+     */
+    private BigDecimal silo38LumpsAshContent;
+    /**
+     * 筒仓三八块全硫(%)
+     */
+    private BigDecimal silo38LumpsTotalSulfur;
+    /**
+     * 筒仓三八块挥发分(%)
+     */
+    private BigDecimal silo38LumpsVolatileMatter;
+    /**
+     * 筒仓三八块低位发热量(kcal/kg)
+     */
+    private BigDecimal silo38LumpsLowerHeatingValue;
+
+    /**
+     * 筒仓籽煤全水(%)
+     */
+    private BigDecimal siloSeedCoalTotalMoisture;
+    /**
+     * 筒仓籽煤灰分(%)
+     */
+    private BigDecimal siloSeedCoalAshContent;
+    /**
+     * 筒仓籽煤全硫(%)
+     */
+    private BigDecimal siloSeedCoalTotalSulfur;
+    /**
+     * 筒仓籽煤挥发分(%)
+     */
+    private BigDecimal siloSeedCoalVolatileMatter;
+    /**
+     * 筒仓籽煤低位发热量(kcal/kg)
+     */
+    private BigDecimal siloSeedCoalLowerHeatingValue;
+
+    /**
+     * 筒仓沫煤全水(%)
+     */
+    private BigDecimal siloFineCoalTotalMoisture;
+    /**
+     * 筒仓沫煤灰分(%)
+     */
+    private BigDecimal siloFineCoalAshContent;
+    /**
+     * 筒仓沫煤全硫(%)
+     */
+    private BigDecimal siloFineCoalTotalSulfur;
+    /**
+     * 筒仓沫煤挥发分(%)
+     */
+    private BigDecimal siloFineCoalVolatileMatter;
+    /**
+     * 筒仓沫煤低位发热量(kcal/kg)
+     */
+    private BigDecimal siloFineCoalLowerHeatingValue;
+
+    /**
+     * 煤泥全水(%)
+     */
+    private BigDecimal slimeTotalMoisture;
+    /**
+     * 煤泥灰分(%)
+     */
+    private BigDecimal slimeAshContent;
+    /**
+     * 煤泥全硫(%)
+     */
+    private BigDecimal slimeTotalSulfur;
+    /**
+     * 煤泥挥发分(%)
+     */
+    private BigDecimal slimeVolatileMatter;
+    /**
+     * 煤泥低位发热量(kcal/kg)
+     */
+    private BigDecimal slimeLowerHeatingValue;
+
+    /**
+     * 矸石全水(%)
+     */
+    private BigDecimal gangueTotalMoisture;
+    /**
+     * 矸石灰分(%)
+     */
+    private BigDecimal gangueAshContent;
+    /**
+     * 矸石全硫(%)
+     */
+    private BigDecimal gangueTotalSulfur;
+    /**
+     * 矸石挥发分(%)
+     */
+    private BigDecimal gangueVolatileMatter;
+    /**
+     * 矸石低位发热量(kcal/kg)
+     */
+    private BigDecimal gangueLowerHeatingValue;
+
+    // 生产设置参数
+    /**
+     * 305浅槽密度最小值(g/cm³)
+     */
+    private BigDecimal shallowTrough305DensityMin;
+    /**
+     * 305浅槽密度最大值(g/cm³)
+     */
+    private BigDecimal shallowTrough305DensityMax;
+    /**
+     * 321旋流器压力(Mpa)
+     */
+    private BigDecimal cyclone321Pressure;
+    /**
+     * 333TSS密度最小值(g/cm³)
+     */
+    private BigDecimal tss333DensityMin;
+    /**
+     * 333TSS密度最大值(g/cm³)
+     */
+    private BigDecimal tss333DensityMax;
+
+    // 生产耗材统计
+    /**
+     * 电耗损当班量(kw*h)
+     */
+    private BigDecimal electricityConsumptionCurrentShift;
+    /**
+     * 污水处理站补水量(m³)
+     */
+    private BigDecimal wastewaterTreatmentReplenishmentWater;
+    /**
+     * 磁铁矿粉当班量(吨)
+     */
+    private BigDecimal magnetitePowderCurrentShift;
+    /**
+     * 白药-阴离子当班量(kg)
+     */
+    private BigDecimal whiteReagentAnionicCurrentShift;
+    /**
+     * 黄药-阳离子当班量(kg)
+     */
+    private BigDecimal yellowReagentCationicCurrentShift;
+    /**
+     * 609压滤机开机板数
+     */
+    private Integer filterPress609StartPlates;
+    /**
+     * 609压滤机停机板数
+     */
+    private Integer filterPress609EndPlates;
+    /**
+     * 610压滤机开机板数
+     */
+    private Integer filterPress610StartPlates;
+    /**
+     * 610压滤机停机板数
+     */
+    private Integer filterPress610EndPlates;
+
+    // 筒仓仓位统计
+    /**
+     * 原煤仓开机仓位(%)
+     */
+    private BigDecimal rawCoalSiloStartupPosition;
+    /**
+     * 原煤仓停机仓位(%)
+     */
+    private BigDecimal rawCoalSiloShutdownPosition;
+    /**
+     * 大块煤仓开机仓位(%)
+     */
+    private BigDecimal largeLumpCoalSiloStartupPosition;
+    /**
+     * 大块煤仓停机仓位(%)
+     */
+    private BigDecimal largeLumpCoalSiloShutdownPosition;
+    /**
+     * 三八块煤仓开机仓位(%)
+     */
+    private BigDecimal lump38CoalSiloStartupPosition;
+    /**
+     * 三八块煤仓停机仓位(%)
+     */
+    private BigDecimal lump38CoalSiloShutdownPosition;
+    /**
+     * 籽煤仓开机仓位(%)
+     */
+    private BigDecimal seedCoalSiloStartupPosition;
+    /**
+     * 籽煤仓停机仓位(%)
+     */
+    private BigDecimal seedCoalSiloShutdownPosition;
+    /**
+     * 沫煤仓开机仓位(%)
+     */
+    private BigDecimal fineCoalSiloStartupPosition;
+    /**
+     * 沫煤仓停机仓位(%)
+     */
+    private BigDecimal fineCoalSiloShutdownPosition;
+
+    // 浓缩机阻力
+    /**
+     * 501浓缩机阻力开机1(Mpa)
+     */
+    private BigDecimal thickener501ResistanceStartup1;
+    /**
+     * 501浓缩机阻力开机2(Mpa)
+     */
+    private BigDecimal thickener501ResistanceStartup2;
+    /**
+     * 501浓缩机阻力开机3(Mpa)
+     */
+    private BigDecimal thickener501ResistanceStartup3;
+    /**
+     * 501浓缩机阻力开机4(Mpa)
+     */
+    private BigDecimal thickener501ResistanceStartup4;
+    /**
+     * 501浓缩机阻力停机1(Mpa)
+     */
+    private BigDecimal thickener501ResistanceShutdown1;
+    /**
+     * 501浓缩机阻力停机2(Mpa)
+     */
+    private BigDecimal thickener501ResistanceShutdown2;
+    /**
+     * 501浓缩机阻力停机3(Mpa)
+     */
+    private BigDecimal thickener501ResistanceShutdown3;
+    /**
+     * 501浓缩机阻力停机4(Mpa)
+     */
+    private BigDecimal thickener501ResistanceShutdown4;
+
+    /**
+     * 502浓缩机阻力开机1(Mpa)
+     */
+    private BigDecimal thickener502ResistanceStartup1;
+    /**
+     * 502浓缩机阻力开机2(Mpa)
+     */
+    private BigDecimal thickener502ResistanceStartup2;
+    /**
+     * 502浓缩机阻力开机3(Mpa)
+     */
+    private BigDecimal thickener502ResistanceStartup3;
+    /**
+     * 502浓缩机阻力开机4(Mpa)
+     */
+    private BigDecimal thickener502ResistanceStartup4;
+    /**
+     * 502浓缩机阻力停机1(Mpa)
+     */
+    private BigDecimal thickener502ResistanceShutdown1;
+    /**
+     * 502浓缩机阻力停机2(Mpa)
+     */
+    private BigDecimal thickener502ResistanceShutdown2;
+    /**
+     * 502浓缩机阻力停机3(Mpa)
+     */
+    private BigDecimal thickener502ResistanceShutdown3;
+    /**
+     * 502浓缩机阻力停机4(Mpa)
+     */
+    private BigDecimal thickener502ResistanceShutdown4;
+
+    // 生产运行情况
+    /**
+     * 故障时间(小时)
+     */
+    private BigDecimal faultTimeHours;
+    /**
+     * 运行时间(小时)
+     */
+    private BigDecimal runningTimeHours;
+    /**
+     * 停车原因
+     */
+    private String shutdownReason;
+
+    // 人员信息
+    /**
+     * 集控员
+     */
+    private String centralController;
+    /**
+     * 生产班长
+     */
+    private String productionShiftLeader;
+    /**
+     * 调度主任
+     */
+    private String dispatchDirector;
 
 }

@@ -1,0 +1,93 @@
+# 生产环境后端配置示例
+# 复制此文件到 yudao-server/src/main/resources/ 目录
+
+spring:
+  datasource:
+    # 主数据源
+    master:
+      url: jdbc:mysql://localhost:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+      username: yudao
+      password: your_password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    # 从数据源（如果使用读写分离）
+    slave:
+      url: jdbc:mysql://localhost:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+      username: yudao
+      password: your_password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # Redis配置
+  redis:
+    host: localhost
+    port: 6379
+    password: # 如果有密码
+    database: 1
+    timeout: 10s
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+
+server:
+  port: 48080
+  servlet:
+    context-path: /
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    cn.iocoder.yudao: DEBUG
+  file:
+    name: /opt/logs/yudao-server.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+
+# 芋道配置
+yudao:
+  # 多租户配置
+  tenant:
+    enable: true
+    ignore-urls:
+      - /jmreport/*
+      - /admin-api/coal/production-daily-report/plan-progress
+    ignore-visit-urls:
+      - /admin-api/system/user/profile/**
+      - /admin-api/system/auth/**
+    ignore-tables:
+    ignore-caches:
+      - user_role_ids
+      - permission_menu_ids
+      - oauth_client
+      - notify_template
+      - mail_account
+      - mail_template
+      - sms_template
+
+  # 安全配置
+  security:
+    permit-all-urls:
+      - /admin-api/system/auth/**
+      - /admin-api/system/captcha/**
+      - /admin-api/infra/file/**
+      - /admin-api/coal/**
+
+  # 监控配置
+  monitor:
+    enable: true
+
+# 监控端点配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true

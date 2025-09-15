@@ -1,0 +1,26 @@
+# 生产环境配置示例
+# 复制此文件为 .env.prod 使用
+
+# 应用标题
+VITE_APP_TITLE=选煤厂生产管理系统
+
+# 租户配置
+VITE_APP_TENANT_ENABLE=true
+VITE_APP_DEFAULT_LOGIN_TENANT=芋道源码
+
+# API配置
+VITE_BASE_URL=https://your-domain.com
+VITE_API_URL=/admin-api
+VITE_BASE_PATH=/
+
+# 生产环境配置
+VITE_DROP_DEBUGGER=true
+VITE_DROP_CONSOLE=true
+VITE_SOURCEMAP=false
+VITE_OUT_DIR=dist
+
+# 其他配置
+VITE_APP_CAPTCHA_ENABLE=true
+VITE_APP_DEFAULT_LOGIN_USERNAME=admin
+VITE_APP_DEFAULT_LOGIN_PASSWORD=admin123
+VITE_APP_DOCALERT_ENABLE=false

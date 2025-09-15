@@ -6,10 +6,12 @@ import cn.iocoder.yudao.framework.common.pojo.PageParam;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
 import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
+import cn.iocoder.yudao.framework.tenant.core.aop.TenantIgnore;
 import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportPageReqVO;
 import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportRespVO;
 import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportSaveReqVO;
 import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionDailyReportStatisticsRespVO;
+import cn.iocoder.yudao.module.coal.controller.admin.productiondailyreport.vo.ProductionPlanProgressRespVO;
 import cn.iocoder.yudao.module.coal.dal.dataobject.productiondailyreport.ProductionDailyReportDO;
 import cn.iocoder.yudao.module.coal.service.productiondailyreport.ProductionDailyReportService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,10 +22,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.io.IOException;
 
 import static cn.iocoder.yudao.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
@@ -106,6 +110,15 @@ public class ProductionDailyReportController {
     public CommonResult<ProductionDailyReportStatisticsRespVO> getProductionDailyReportStatistics() {
         ProductionDailyReportStatisticsRespVO statistics = productionDailyReportService.getProductionDailyReportStatistics();
         return success(statistics);
+    }
+
+    @TenantIgnore
+    @PermitAll
+    @GetMapping("/plan-progress")
+    @Operation(summary = "获得生产计划进展统计信息，包含年月计划完成百分比")
+    public CommonResult<List<ProductionPlanProgressRespVO>> getProductionPlanProgress() {
+        ProductionPlanProgressRespVO progress = productionDailyReportService.getProductionPlanProgress();
+        return success(Arrays.asList(progress));
     }
 
 }

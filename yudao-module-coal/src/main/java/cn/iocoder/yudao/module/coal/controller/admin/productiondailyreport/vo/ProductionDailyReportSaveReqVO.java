@@ -177,4 +177,295 @@ public class ProductionDailyReportSaveReqVO {
     @Schema(description = "备注信息")
     private String remarks;
 
+    // ========== 新选煤厂字段 ==========
+    
+    // 皮带秤及产量统计字段
+    @Schema(description = "201原煤皮带接班量(吨)")
+    private BigDecimal beltScale201RawCoalHandoverIn;
+    @Schema(description = "201原煤皮带交班量(吨)")
+    private BigDecimal beltScale201RawCoalHandoverOut;
+    @Schema(description = "201原煤皮带当班量(吨)")
+    private BigDecimal beltScale201RawCoalCurrentShift;
+    @Schema(description = "201原煤皮带月累计(吨)")
+    private BigDecimal beltScale201RawCoalMonthlyTotal;
+
+    @Schema(description = "701块精煤皮带秤接班量(吨)")
+    private BigDecimal beltScale701BlockCleanHandoverIn;
+    @Schema(description = "701块精煤皮带秤交班量(吨)")
+    private BigDecimal beltScale701BlockCleanHandoverOut;
+    @Schema(description = "701块精煤皮带秤当班量(吨)")
+    private BigDecimal beltScale701BlockCleanCurrentShift;
+    @Schema(description = "701块精煤皮带秤月累计(吨)")
+    private BigDecimal beltScale701BlockCleanMonthlyTotal;
+    @Schema(description = "701块精煤当班产率(%)")
+    private BigDecimal beltScale701BlockCleanCurrentYield;
+    @Schema(description = "701块精煤月度产率(%)")
+    private BigDecimal beltScale701BlockCleanMonthlyYield;
+
+    @Schema(description = "702末精煤皮带秤接班量(吨)")
+    private BigDecimal beltScale702FineCleanHandoverIn;
+    @Schema(description = "702末精煤皮带秤交班量(吨)")
+    private BigDecimal beltScale702FineCleanHandoverOut;
+    @Schema(description = "702末精煤皮带秤当班量(吨)")
+    private BigDecimal beltScale702FineCleanCurrentShift;
+    @Schema(description = "702末精煤皮带秤月累计(吨)")
+    private BigDecimal beltScale702FineCleanMonthlyTotal;
+    @Schema(description = "702末精煤当班产率(%)")
+    private BigDecimal beltScale702FineCleanCurrentYield;
+    @Schema(description = "702末精煤月度产率(%)")
+    private BigDecimal beltScale702FineCleanMonthlyYield;
+
+    @Schema(description = "压滤煤泥接班量(吨)")
+    private BigDecimal filterPressSlimeHandoverIn;
+    @Schema(description = "压滤煤泥交班量(吨)")
+    private BigDecimal filterPressSlimeHandoverOut;
+    @Schema(description = "压滤煤泥当班量(吨)")
+    private BigDecimal filterPressSlimeCurrentShift;
+    @Schema(description = "压滤煤泥月累计(吨)")
+    private BigDecimal filterPressSlimeMonthlyTotal;
+    @Schema(description = "压滤煤泥当班产率(%)")
+    private BigDecimal filterPressSlimeCurrentYield;
+    @Schema(description = "压滤煤泥月度产率(%)")
+    private BigDecimal filterPressSlimeMonthlyYield;
+
+    @Schema(description = "未入洗末原煤秤接班量(吨)")
+    private BigDecimal unwashedFineRawCoalHandoverIn;
+    @Schema(description = "未入洗末原煤秤交班量(吨)")
+    private BigDecimal unwashedFineRawCoalHandoverOut;
+    @Schema(description = "未入洗末原煤秤当班量(吨)")
+    private BigDecimal unwashedFineRawCoalCurrentShift;
+    @Schema(description = "未入洗末原煤秤月累计(吨)")
+    private BigDecimal unwashedFineRawCoalMonthlyTotal;
+    @Schema(description = "未入洗末原煤当班产率(%)")
+    private BigDecimal unwashedFineRawCoalCurrentYield;
+    @Schema(description = "未入洗末原煤月度产率(%)")
+    private BigDecimal unwashedFineRawCoalMonthlyYield;
+
+    @Schema(description = "901矸石量当班量(吨)")
+    private BigDecimal gangue901CurrentShift;
+    @Schema(description = "901矸石量月累计(吨)")
+    private BigDecimal gangue901MonthlyTotal;
+    @Schema(description = "901矸石当班产率(%)")
+    private BigDecimal gangue901CurrentYield;
+    @Schema(description = "901矸石月度产率(%)")
+    private BigDecimal gangue901MonthlyYield;
+
+    @Schema(description = "商品煤总重当班量(吨)")
+    private BigDecimal commercialCoalTotalCurrentShift;
+    @Schema(description = "商品煤总重月累计(吨)")
+    private BigDecimal commercialCoalTotalMonthlyTotal;
+    @Schema(description = "商品煤总重当班产率(%)")
+    private BigDecimal commercialCoalTotalCurrentYield;
+    @Schema(description = "商品煤总重月度产率(%)")
+    private BigDecimal commercialCoalTotalMonthlyYield;
+
+    @Schema(description = "电表数接班读数(kw*h)")
+    private BigDecimal electricityMeterHandoverIn;
+    @Schema(description = "电表数交班读数(kw*h)")
+    private BigDecimal electricityMeterHandoverOut;
+    @Schema(description = "电表数当班量(kw*h)")
+    private BigDecimal electricityMeterCurrentShift;
+    @Schema(description = "电表数月累计(kw*h)")
+    private BigDecimal electricityMeterMonthlyTotal;
+    @Schema(description = "电表数当班产率(%)")
+    private BigDecimal electricityMeterCurrentYield;
+    @Schema(description = "电表数月度产率(%)")
+    private BigDecimal electricityMeterMonthlyYield;
+
+    @Schema(description = "矿井清水表数接班读数(m³)")
+    private BigDecimal mineCleanWaterHandoverIn;
+    @Schema(description = "矿井清水表数交班读数(m³)")
+    private BigDecimal mineCleanWaterHandoverOut;
+    @Schema(description = "矿井清水表数当班量(m³)")
+    private BigDecimal mineCleanWaterCurrentShift;
+    @Schema(description = "矿井清水表数月累计(m³)")
+    private BigDecimal mineCleanWaterMonthlyTotal;
+    @Schema(description = "矿井清水当班产率(%)")
+    private BigDecimal mineCleanWaterCurrentYield;
+    @Schema(description = "矿井清水月度产率(%)")
+    private BigDecimal mineCleanWaterMonthlyYield;
+
+    // 煤质情况字段
+    @Schema(description = "原煤全水(%)")
+    private BigDecimal rawCoalTotalMoisture;
+    @Schema(description = "原煤灰分(%)")
+    private BigDecimal rawCoalAshContent;
+    @Schema(description = "原煤全硫(%)")
+    private BigDecimal rawCoalTotalSulfur;
+    @Schema(description = "原煤挥发分(%)")
+    private BigDecimal rawCoalVolatileMatter;
+    @Schema(description = "原煤低位发热量(kcal/kg)")
+    private BigDecimal rawCoalLowerHeatingValue;
+
+    @Schema(description = "筒仓大块全水(%)")
+    private BigDecimal siloLargeLumpsTotalMoisture;
+    @Schema(description = "筒仓大块灰分(%)")
+    private BigDecimal siloLargeLumpsAshContent;
+    @Schema(description = "筒仓大块全硫(%)")
+    private BigDecimal siloLargeLumpsTotalSulfur;
+    @Schema(description = "筒仓大块挥发分(%)")
+    private BigDecimal siloLargeLumpsVolatileMatter;
+    @Schema(description = "筒仓大块低位发热量(kcal/kg)")
+    private BigDecimal siloLargeLumpsLowerHeatingValue;
+
+    @Schema(description = "筒仓三八块全水(%)")
+    private BigDecimal silo38LumpsTotalMoisture;
+    @Schema(description = "筒仓三八块灰分(%)")
+    private BigDecimal silo38LumpsAshContent;
+    @Schema(description = "筒仓三八块全硫(%)")
+    private BigDecimal silo38LumpsTotalSulfur;
+    @Schema(description = "筒仓三八块挥发分(%)")
+    private BigDecimal silo38LumpsVolatileMatter;
+    @Schema(description = "筒仓三八块低位发热量(kcal/kg)")
+    private BigDecimal silo38LumpsLowerHeatingValue;
+
+    @Schema(description = "筒仓籽煤全水(%)")
+    private BigDecimal siloSeedCoalTotalMoisture;
+    @Schema(description = "筒仓籽煤灰分(%)")
+    private BigDecimal siloSeedCoalAshContent;
+    @Schema(description = "筒仓籽煤全硫(%)")
+    private BigDecimal siloSeedCoalTotalSulfur;
+    @Schema(description = "筒仓籽煤挥发分(%)")
+    private BigDecimal siloSeedCoalVolatileMatter;
+    @Schema(description = "筒仓籽煤低位发热量(kcal/kg)")
+    private BigDecimal siloSeedCoalLowerHeatingValue;
+
+    @Schema(description = "筒仓沫煤全水(%)")
+    private BigDecimal siloFineCoalTotalMoisture;
+    @Schema(description = "筒仓沫煤灰分(%)")
+    private BigDecimal siloFineCoalAshContent;
+    @Schema(description = "筒仓沫煤全硫(%)")
+    private BigDecimal siloFineCoalTotalSulfur;
+    @Schema(description = "筒仓沫煤挥发分(%)")
+    private BigDecimal siloFineCoalVolatileMatter;
+    @Schema(description = "筒仓沫煤低位发热量(kcal/kg)")
+    private BigDecimal siloFineCoalLowerHeatingValue;
+
+    @Schema(description = "煤泥全水(%)")
+    private BigDecimal slimeTotalMoisture;
+    @Schema(description = "煤泥灰分(%)")
+    private BigDecimal slimeAshContent;
+    @Schema(description = "煤泥全硫(%)")
+    private BigDecimal slimeTotalSulfur;
+    @Schema(description = "煤泥挥发分(%)")
+    private BigDecimal slimeVolatileMatter;
+    @Schema(description = "煤泥低位发热量(kcal/kg)")
+    private BigDecimal slimeLowerHeatingValue;
+
+    @Schema(description = "矸石全水(%)")
+    private BigDecimal gangueTotalMoisture;
+    @Schema(description = "矸石灰分(%)")
+    private BigDecimal gangueAshContent;
+    @Schema(description = "矸石全硫(%)")
+    private BigDecimal gangueTotalSulfur;
+    @Schema(description = "矸石挥发分(%)")
+    private BigDecimal gangueVolatileMatter;
+    @Schema(description = "矸石低位发热量(kcal/kg)")
+    private BigDecimal gangueLowerHeatingValue;
+
+    // 生产设置参数
+    @Schema(description = "305浅槽密度最小值(g/cm³)")
+    private BigDecimal shallowTrough305DensityMin;
+    @Schema(description = "305浅槽密度最大值(g/cm³)")
+    private BigDecimal shallowTrough305DensityMax;
+    @Schema(description = "321旋流器压力(Mpa)")
+    private BigDecimal cyclone321Pressure;
+    @Schema(description = "333TSS密度最小值(g/cm³)")
+    private BigDecimal tss333DensityMin;
+    @Schema(description = "333TSS密度最大值(g/cm³)")
+    private BigDecimal tss333DensityMax;
+
+    // 生产耗材统计
+    @Schema(description = "电耗损当班量(kw*h)")
+    private BigDecimal electricityConsumptionCurrentShift;
+    @Schema(description = "污水处理站补水量(m³)")
+    private BigDecimal wastewaterTreatmentReplenishmentWater;
+    @Schema(description = "磁铁矿粉当班量(吨)")
+    private BigDecimal magnetitePowderCurrentShift;
+    @Schema(description = "白药-阴离子当班量(kg)")
+    private BigDecimal whiteReagentAnionicCurrentShift;
+    @Schema(description = "黄药-阳离子当班量(kg)")
+    private BigDecimal yellowReagentCationicCurrentShift;
+    @Schema(description = "609压滤机开机板数")
+    private Integer filterPress609StartPlates;
+    @Schema(description = "609压滤机停机板数")
+    private Integer filterPress609EndPlates;
+    @Schema(description = "610压滤机开机板数")
+    private Integer filterPress610StartPlates;
+    @Schema(description = "610压滤机停机板数")
+    private Integer filterPress610EndPlates;
+
+    // 筒仓仓位统计
+    @Schema(description = "原煤仓开机仓位(%)")
+    private BigDecimal rawCoalSiloStartupPosition;
+    @Schema(description = "原煤仓停机仓位(%)")
+    private BigDecimal rawCoalSiloShutdownPosition;
+    @Schema(description = "大块煤仓开机仓位(%)")
+    private BigDecimal largeLumpCoalSiloStartupPosition;
+    @Schema(description = "大块煤仓停机仓位(%)")
+    private BigDecimal largeLumpCoalSiloShutdownPosition;
+    @Schema(description = "三八块煤仓开机仓位(%)")
+    private BigDecimal lump38CoalSiloStartupPosition;
+    @Schema(description = "三八块煤仓停机仓位(%)")
+    private BigDecimal lump38CoalSiloShutdownPosition;
+    @Schema(description = "籽煤仓开机仓位(%)")
+    private BigDecimal seedCoalSiloStartupPosition;
+    @Schema(description = "籽煤仓停机仓位(%)")
+    private BigDecimal seedCoalSiloShutdownPosition;
+    @Schema(description = "沫煤仓开机仓位(%)")
+    private BigDecimal fineCoalSiloStartupPosition;
+    @Schema(description = "沫煤仓停机仓位(%)")
+    private BigDecimal fineCoalSiloShutdownPosition;
+
+    // 浓缩机阻力
+    @Schema(description = "501浓缩机阻力开机1(Mpa)")
+    private BigDecimal thickener501ResistanceStartup1;
+    @Schema(description = "501浓缩机阻力开机2(Mpa)")
+    private BigDecimal thickener501ResistanceStartup2;
+    @Schema(description = "501浓缩机阻力开机3(Mpa)")
+    private BigDecimal thickener501ResistanceStartup3;
+    @Schema(description = "501浓缩机阻力开机4(Mpa)")
+    private BigDecimal thickener501ResistanceStartup4;
+    @Schema(description = "501浓缩机阻力停机1(Mpa)")
+    private BigDecimal thickener501ResistanceShutdown1;
+    @Schema(description = "501浓缩机阻力停机2(Mpa)")
+    private BigDecimal thickener501ResistanceShutdown2;
+    @Schema(description = "501浓缩机阻力停机3(Mpa)")
+    private BigDecimal thickener501ResistanceShutdown3;
+    @Schema(description = "501浓缩机阻力停机4(Mpa)")
+    private BigDecimal thickener501ResistanceShutdown4;
+
+    @Schema(description = "502浓缩机阻力开机1(Mpa)")
+    private BigDecimal thickener502ResistanceStartup1;
+    @Schema(description = "502浓缩机阻力开机2(Mpa)")
+    private BigDecimal thickener502ResistanceStartup2;
+    @Schema(description = "502浓缩机阻力开机3(Mpa)")
+    private BigDecimal thickener502ResistanceStartup3;
+    @Schema(description = "502浓缩机阻力开机4(Mpa)")
+    private BigDecimal thickener502ResistanceStartup4;
+    @Schema(description = "502浓缩机阻力停机1(Mpa)")
+    private BigDecimal thickener502ResistanceShutdown1;
+    @Schema(description = "502浓缩机阻力停机2(Mpa)")
+    private BigDecimal thickener502ResistanceShutdown2;
+    @Schema(description = "502浓缩机阻力停机3(Mpa)")
+    private BigDecimal thickener502ResistanceShutdown3;
+    @Schema(description = "502浓缩机阻力停机4(Mpa)")
+    private BigDecimal thickener502ResistanceShutdown4;
+
+    // 生产运行情况
+    @Schema(description = "故障时间(小时)")
+    private BigDecimal faultTimeHours;
+    @Schema(description = "运行时间(小时)")
+    private BigDecimal runningTimeHours;
+    @Schema(description = "停车原因")
+    private String shutdownReason;
+
+    // 人员信息
+    @Schema(description = "集控员", example = "张三")
+    private String centralController;
+    @Schema(description = "生产班长", example = "李四")
+    private String productionShiftLeader;
+    @Schema(description = "调度主任", example = "王五")
+    private String dispatchDirector;
+
 }
