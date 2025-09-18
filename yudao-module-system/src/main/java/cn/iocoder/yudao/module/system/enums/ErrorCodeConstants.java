@@ -302,6 +302,9 @@ public interface ErrorCodeConstants {
     // ========== 能源消耗记录 TODO 补充编号 ==========
     ErrorCode ENERGY_CONSUMPTION_NOT_EXISTS = new ErrorCode(1_002_093_000, "能源消耗记录不存在");
 
+    // ========== 生产日报附件上传 TODO 补充编号 ==========
+    ErrorCode DAILY_REPORT_ATTACH_NOT_EXISTS = new ErrorCode(1_002_093_000, "生产日报附件上传不存在");
+
 
 
 }
