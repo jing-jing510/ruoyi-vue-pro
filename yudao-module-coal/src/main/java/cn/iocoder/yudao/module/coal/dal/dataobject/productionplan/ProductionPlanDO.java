@@ -1,6 +1,6 @@
 package cn.iocoder.yudao.module.coal.dal.dataobject.productionplan;
 
-import com.sun.xml.internal.bind.v2.TODO;
+// TODO: 添加必要的导入
 import lombok.*;
 
 import java.time.LocalDate;
