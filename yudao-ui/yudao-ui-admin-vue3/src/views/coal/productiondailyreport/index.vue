@@ -65,13 +65,6 @@
           <Icon icon="ep:plus" class="mr-5px" /> 新增
         </el-button>
         <el-button
-          type="primary"
-          plain
-          @click="openOnlineReport"
-        >
-          <Icon icon="ep:plus" class="mr-5px" /> 在线填报
-        </el-button>
-        <el-button
           type="success"
           plain
           @click="handleExport"
@@ -89,6 +82,13 @@
         >
           <Icon icon="ep:delete" class="mr-5px" /> 批量删除
         </el-button>
+        <el-button
+          type="primary"
+          plain
+          @click="openOnlineReport"
+        >
+          <Icon icon="ep:plus" class="mr-5px" /> 在线填报
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
@@ -103,114 +103,117 @@
         @selection-change="handleRowCheckboxChange"
     >
     <el-table-column type="selection" width="55" />
-<!--      <el-table-column label="日报id" align="center" prop="id" />-->
-      <el-table-column
-        label="日期"
-        align="center"
-        prop="reportDate"
-        :formatter="dateFormatter2"
-        width="180px"
-      />
-<!--      <el-table-column label="班次ID" align="center" prop="shiftId" />-->
-      <el-table-column label="集控员" align="center" prop="operatorId">
-        <template #default="scope">
-          {{ getUserNickname(scope.row.operatorId) }}
-        </template>
-      </el-table-column>
-      <el-table-column label="带班主任" align="center" prop="shiftLeaderId">
-        <template #default="scope">
-          {{ getUserNickname(scope.row.shiftLeaderId) }}
-        </template>
-      </el-table-column>
-      <el-table-column
-        label="启车时间"
-        align="center"
-        prop="startTime"
-        :formatter="dateFormatter"
-        width="180px"
-      />
-      <el-table-column label="带煤时间(分钟)" align="center" prop="coalFeedingTime" />
-      <el-table-column
-        label="停车时间"
-        align="center"
-        prop="stopTime"
-        :formatter="dateFormatter"
-        width="180px"
-      />
-      <el-table-column label="有效带煤时间(分钟)" align="center" prop="effectiveFeedingTime" />
-      <el-table-column label="故障影响时间(分钟)" align="center" prop="faultImpactTime" />
-      <el-table-column label="入洗煤量(吨)" align="center" prop="rawCoalInput" />
-      <el-table-column label="小时处理量(吨/小时)" align="center" prop="hourlyCapacity" />
-      <el-table-column label="块精煤产量(吨)" align="center" prop="blockCleanCoalOutput" />
-      <el-table-column label="末精煤产量(吨)" align="center" prop="fineCleanCoalOutput" />
-      <el-table-column label="矸石产量(吨)" align="center" prop="gangueOutput" />
-      <el-table-column label="中煤产量(吨)" align="center" prop="middlingCoalOutput" />
-      <el-table-column label="压滤板次" align="center" prop="filterPressCycles" />
-      <el-table-column label="压滤煤量(吨)" align="center" prop="filterPressCoalAmount" />
-      <el-table-column label="滤布使用量(张)" align="center" prop="filterClothUsage" />
-      <el-table-column label="放舱记录" align="center" prop="dischargeRecord" />
-      <el-table-column label="挡板添加介质量(kg)" align="center" prop="baffleMediumAddition" />
-      <el-table-column label="CaO量(kg)" align="center" prop="caoAmount" />
-      <el-table-column label="絮凝剂(kg)" align="center" prop="flocculantAmount" />
-      <el-table-column label="317密度(kg/L)" align="center" prop="densityMd317" />
-      <el-table-column label="第一次块精煤灰分(%)" align="center" prop="firstAshBlockClean" />
-      <el-table-column label="第一次末精煤灰分(%)" align="center" prop="firstAshFineClean" />
-      <el-table-column label="第一次中煤灰分(%)" align="center" prop="firstAshMiddling" />
-      <el-table-column label="第一次煤泥灰分(%)" align="center" prop="firstAshSlime" />
-      <el-table-column label="第一次矸石灰分(%)" align="center" prop="firstAshGangue" />
-      <el-table-column label="第二次块精煤灰分(%)" align="center" prop="secondAshBlockClean" />
-      <el-table-column label="第二次末精煤灰分(%)" align="center" prop="secondAshFineClean" />
-      <el-table-column label="第二次中煤灰分(%)" align="center" prop="secondAshMiddling" />
-      <el-table-column label="第二次煤泥灰分(%)" align="center" prop="secondAshSlime" />
-      <el-table-column label="第二次矸石灰分(%)" align="center" prop="secondAshGangue" />
-      <el-table-column label="影响时间记录详情" align="center" prop="impactTimeRecord" />
-      <el-table-column label="交办事项" align="center" prop="assignedTasks" />
-      <el-table-column label="启车循环水池液位" align="center" prop="startCirculatingWaterPool" />
-      <el-table-column label="启车清水桶液位" align="center" prop="startCleanWaterTank" />
-      <el-table-column label="启车末煤仓位" align="center" prop="startFineCoalLevel" />
-      <el-table-column label="启车粒煤仓位" align="center" prop="startGranularCoalLevel" />
-      <el-table-column label="启车大块仓位" align="center" prop="startLargeBlockLevel" />
-      <el-table-column label="启车中块仓位" align="center" prop="startMediumBlockLevel" />
-      <el-table-column label="启车小块仓位" align="center" prop="startSmallBlockLevel" />
-      <el-table-column label="启车中煤仓位" align="center" prop="startMiddlingCoalLevel" />
-      <el-table-column label="启车矸石仓位" align="center" prop="startGangueLevel" />
-      <el-table-column label="停车循环水池液位" align="center" prop="stopCirculatingWaterPool" />
-      <el-table-column label="停车清水桶液位" align="center" prop="stopCleanWaterTank" />
-      <el-table-column label="停车末煤仓位" align="center" prop="stopFineCoalLevel" />
-      <el-table-column label="停车粒煤仓位" align="center" prop="stopGranularCoalLevel" />
-      <el-table-column label="停车大块仓位" align="center" prop="stopLargeBlockLevel" />
-      <el-table-column label="停车中块仓位" align="center" prop="stopMediumBlockLevel" />
-      <el-table-column label="停车小块仓位" align="center" prop="stopSmallBlockLevel" />
-      <el-table-column label="停车中煤仓位" align="center" prop="stopMiddlingCoalLevel" />
-      <el-table-column label="停车矸石仓位" align="center" prop="stopGangueLevel" />
-      <el-table-column label="备注信息" align="center" prop="remarks" />
-      <el-table-column
-        label="创建时间"
-        align="center"
-        prop="createTime"
-        :formatter="dateFormatter"
-        width="180px"
-      />
-      <el-table-column label="操作" align="center" min-width="120px">
-        <template #default="scope">
-          <el-button
-            link
-            type="primary"
-            @click="openForm('update', scope.row.id)"
-            v-hasPermi="['coal:production-daily-report:update']"
-          >
-            编辑
-          </el-button>
-          <el-button
-            link
-            type="danger"
-            @click="handleDelete(scope.row.id)"
-            v-hasPermi="['coal:production-daily-report:delete']"
-          >
-            删除
-          </el-button>
-        </template>
-      </el-table-column>
+    <el-table-column
+      label="日期"
+      align="center"
+      prop="reportDate"
+      :formatter="dateFormatter2"
+      width="120px"
+    />
+    <el-table-column label="集控员" align="center" prop="centralController" width="100px" />
+    <el-table-column label="生产班长" align="center" prop="productionShiftLeader" width="100px" />
+    <el-table-column label="调度主任" align="center" prop="dispatchDirector" width="100px" />
+    <el-table-column
+      label="启车时间"
+      align="center"
+      prop="startTime"
+      :formatter="dateFormatter"
+      width="120px"
+    />
+    <el-table-column
+      label="停车时间"
+      align="center"
+      prop="stopTime"
+      :formatter="dateFormatter"
+      width="120px"
+    />
+    <el-table-column label="故障时间(h)" align="center" prop="faultTimeHours" width="100px" />
+    <el-table-column label="运行时间(h)" align="center" prop="runningTimeHours" width="100px" />
+    <el-table-column label="入洗原煤量(吨)" align="center" prop="rawCoalInput" width="120px" />
+    
+    <!-- 皮带秤及产量统计 -->
+    <el-table-column label="201原煤皮带当班量(吨)" align="center" prop="beltScale201RawCoalCurrentShift" width="140px" />
+    <el-table-column label="701块精煤当班量(吨)" align="center" prop="beltScale701BlockCleanCurrentShift" width="140px" />
+    <el-table-column label="701块精煤当班产率(%)" align="center" prop="beltScale701BlockCleanCurrentYield" width="140px" />
+    <el-table-column label="702末精煤当班量(吨)" align="center" prop="beltScale702FineCleanCurrentShift" width="140px" />
+    <el-table-column label="702末精煤当班产率(%)" align="center" prop="beltScale702FineCleanCurrentYield" width="140px" />
+    <el-table-column label="压滤煤泥当班量(吨)" align="center" prop="filterPressSlimeCurrentShift" width="140px" />
+    <el-table-column label="压滤煤泥当班产率(%)" align="center" prop="filterPressSlimeCurrentYield" width="140px" />
+    <el-table-column label="901矸石当班量(吨)" align="center" prop="gangue901CurrentShift" width="120px" />
+    <el-table-column label="901矸石当班产率(%)" align="center" prop="gangue901CurrentYield" width="120px" />
+    <el-table-column label="商品煤总重当班量(吨)" align="center" prop="commercialCoalTotalCurrentShift" width="140px" />
+    <el-table-column label="商品煤总重当班产率(%)" align="center" prop="commercialCoalTotalCurrentYield" width="140px" />
+    
+    <!-- 煤质情况 -->
+    <el-table-column label="原煤灰分(%)" align="center" prop="rawCoalAshContent" width="100px" />
+    <el-table-column label="筒仓大块灰分(%)" align="center" prop="siloLargeLumpsAshContent" width="120px" />
+    <el-table-column label="筒仓三八块灰分(%)" align="center" prop="silo38LumpsAshContent" width="120px" />
+    <el-table-column label="筒仓籽煤灰分(%)" align="center" prop="siloSeedCoalAshContent" width="120px" />
+    <el-table-column label="筒仓沫煤灰分(%)" align="center" prop="siloFineCoalAshContent" width="120px" />
+    <el-table-column label="煤泥灰分(%)" align="center" prop="slimeAshContent" width="100px" />
+    <el-table-column label="矸石灰分(%)" align="center" prop="gangueAshContent" width="100px" />
+    
+    <!-- 生产设置参数 -->
+    <el-table-column label="305浅槽密度(g/cm³)" align="center" prop="shallowTrough305DensityMin" width="140px">
+      <template #default="scope">
+        {{ scope.row.shallowTrough305DensityMin ? `${scope.row.shallowTrough305DensityMin}-${scope.row.shallowTrough305DensityMax}` : '' }}
+      </template>
+    </el-table-column>
+    <el-table-column label="321旋流器压力(Mpa)" align="center" prop="cyclone321Pressure" width="140px" />
+    <el-table-column label="333TSS密度(g/cm³)" align="center" prop="tss333DensityMin" width="140px">
+      <template #default="scope">
+        {{ scope.row.tss333DensityMin ? `${scope.row.tss333DensityMin}-${scope.row.tss333DensityMax}` : '' }}
+      </template>
+    </el-table-column>
+    
+    <!-- 生产耗材统计 -->
+    <el-table-column label="电耗损(kw*h)" align="center" prop="electricityConsumptionCurrentShift" width="120px" />
+    <el-table-column label="污水处理站补水量(m³)" align="center" prop="wastewaterTreatmentReplenishmentWater" width="140px" />
+    <el-table-column label="磁铁矿粉(吨)" align="center" prop="magnetitePowderCurrentShift" width="120px" />
+    <el-table-column label="白药-阴离子(kg)" align="center" prop="whiteReagentAnionicCurrentShift" width="120px" />
+    <el-table-column label="黄药-阳离子(kg)" align="center" prop="yellowReagentCationicCurrentShift" width="120px" />
+    
+    <!-- 筒仓仓位统计 -->
+    <el-table-column label="原煤仓开机仓位(%)" align="center" prop="rawCoalSiloStartupPosition" width="120px" />
+    <el-table-column label="原煤仓停机仓位(%)" align="center" prop="rawCoalSiloShutdownPosition" width="120px" />
+    <el-table-column label="大块煤仓开机仓位(%)" align="center" prop="largeLumpCoalSiloStartupPosition" width="140px" />
+    <el-table-column label="大块煤仓停机仓位(%)" align="center" prop="largeLumpCoalSiloShutdownPosition" width="140px" />
+    <el-table-column label="三八块煤仓开机仓位(%)" align="center" prop="lump38CoalSiloStartupPosition" width="140px" />
+    <el-table-column label="三八块煤仓停机仓位(%)" align="center" prop="lump38CoalSiloShutdownPosition" width="140px" />
+    <el-table-column label="籽煤仓开机仓位(%)" align="center" prop="seedCoalSiloStartupPosition" width="120px" />
+    <el-table-column label="籽煤仓停机仓位(%)" align="center" prop="seedCoalSiloShutdownPosition" width="120px" />
+    <el-table-column label="沫煤仓开机仓位(%)" align="center" prop="fineCoalSiloStartupPosition" width="120px" />
+    <el-table-column label="沫煤仓停机仓位(%)" align="center" prop="fineCoalSiloShutdownPosition" width="120px" />
+    
+    <el-table-column label="停车原因" align="center" prop="shutdownReason" width="200px" show-overflow-tooltip />
+    <el-table-column label="备注信息" align="center" prop="remarks" width="150px" show-overflow-tooltip />
+    <el-table-column
+      label="创建时间"
+      align="center"
+      prop="createTime"
+      :formatter="dateFormatter"
+      width="120px"
+    />
+    <el-table-column label="操作" align="center" min-width="120px" fixed="right">
+      <template #default="scope">
+        <el-button
+          link
+          type="primary"
+          @click="openForm('update', scope.row.id)"
+          v-hasPermi="['coal:production-daily-report:update']"
+        >
+          编辑
+        </el-button>
+        <el-button
+          link
+          type="danger"
+          @click="handleDelete(scope.row.id)"
+          v-hasPermi="['coal:production-daily-report:delete']"
+        >
+          删除
+        </el-button>
+      </template>
+    </el-table-column>
     </el-table>
     <!-- 分页 -->
     <Pagination
@@ -231,9 +234,9 @@ import { dateFormatter,dateFormatter2 } from '@/utils/formatTime'
 import download from '@/utils/download'
 import { ProductionDailyReportApi, ProductionDailyReport } from '@/api/coal/productiondailyreport'
 import ProductionDailyReportForm from './ProductionDailyReportForm.vue'
-
 import { getSimpleUserList, UserVO } from '@/api/system/user'
-/** 现场生产日报 列表 */
+
+/** 陕西神木朱盖塔选煤厂生产日报 列表 */
 defineOptions({ name: 'ProductionDailyReport' })
 
 const message = useMessage() // 消息弹窗
@@ -246,8 +249,6 @@ const queryParams = reactive({
   pageNo: 1,
   pageSize: 10,
   reportDate: [],
-  operatorId: undefined,
-  shiftLeaderId: undefined,
   startTime: [],
   stopTime: [],
   createTime: [],
@@ -331,12 +332,7 @@ const handleExport = async () => {
   }
 }
 
-/** 根据用户ID获取用户昵称 */
-const getUserNickname = (userId: number | undefined) => {
-  if (!userId) return ''
-  const user = userList.value.find(u => u.id === userId)
-  return user ? user.nickname : `用户${userId}`
-}
+
 /** 加载用户列表 */
 const loadUserList = async () => {
   try {
@@ -349,7 +345,7 @@ const loadUserList = async () => {
 }
 /** 在线填报按钮操作 */
 const openOnlineReport = () => {
-  const url = 'http://localhost:48080/jmreport/shareView/1120595319747600384?shareToken=39303adec4dd28332e4ce1f063e17be7'
+  const url = 'http://localhost:48080/jmreport/shareView/1126860765295665152?shareToken=a442709b1e418ae4ed50ae264e18a83d'
   window.open(url, '_blank')
 }
 /** 初始化 **/

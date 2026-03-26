@@ -10,6 +10,7 @@ import cn.iocoder.yudao.framework.common.util.date.DateUtils;
 import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
 import cn.iocoder.yudao.framework.datapermission.core.annotation.DataPermission;
 import cn.iocoder.yudao.framework.tenant.config.TenantProperties;
+import cn.iocoder.yudao.framework.tenant.core.aop.TenantIgnore;
 import cn.iocoder.yudao.framework.tenant.core.context.TenantContextHolder;
 import cn.iocoder.yudao.framework.tenant.core.util.TenantUtils;
 import cn.iocoder.yudao.module.system.controller.admin.permission.vo.role.RoleSaveReqVO;
@@ -254,6 +255,7 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
+    @TenantIgnore
     public TenantDO getTenantByName(String name) {
         return tenantMapper.selectByName(name);
     }

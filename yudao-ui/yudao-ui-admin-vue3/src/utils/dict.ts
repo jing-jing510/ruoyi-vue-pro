@@ -216,11 +216,24 @@ export enum DICT_TYPE {
   ERP_AUDIT_STATUS = 'erp_audit_status', // ERP 审批状态
   ERP_STOCK_RECORD_BIZ_TYPE = 'erp_stock_record_biz_type', // 库存明细的业务类型
   
-  // 备件管理新增字典
+  // ========== SPARE_PART - 备件管理模块 ==========
   SPARE_PART_TYPE = 'spare_part_type', // 备件类型
+  SPARE_PART_CATEGORY_LEVEL = 'spare_part_category_level', // 备件分类层级
+  SPARE_PART_STATUS = 'spare_part_status', // 备件状态
+  IS_CRITICAL_SPARE_PART = 'is_critical_spare_part', // 是否关键备件
+  USAGE_FREQUENCY = 'usage_frequency', // 使用频率
+  STOCK_TYPE = 'stock_type', // 库存类型
+  OPERATION_TYPE = 'operation_type', // 出入库操作类型
   ALERT_TYPE = 'alert_type', // 预警类型
   ALERT_LEVEL = 'alert_level', // 预警级别
   ALERT_STATUS = 'alert_status', // 预警状态
+  IS_SENT = 'is_sent', // 是否已发送
+  USAGE_TYPE = 'usage_type', // 使用类型
+  REPLACEMENT_DIFFICULTY = 'replacement_difficulty', // 更换难度
+  OLD_PART_CONDITION = 'old_part_condition', // 旧件状态
+  PERFORMANCE_RATING = 'performance_rating', // 性能评级
+  APPROVE_STATUS = 'approve_status', // 审批状态
+  IS_REQUIRED = 'is_required', // 是否必需
 
   // ========== AI - 人工智能模块  ==========
   AI_PLATFORM = 'ai_platform', // AI 平台
@@ -272,6 +285,72 @@ export enum DICT_TYPE {
   EQUIPMENT_STATUS = 'equipment_status',                    // 设备状态
   EQUIPMENT_HEALTH_LEVEL = 'equipment_health_level',        // 设备健康等级
   EQUIPMENT_IMPORTANCE_LEVEL = 'equipment_importance_level', // 设备重要度
-  EQUIPMENT_CATEGORY_LEVEL = 'equipment_category_level'      // 设备分类层级
+  EQUIPMENT_CATEGORY_LEVEL = 'equipment_category_level',     // 设备分类层级
+
+  // ========== COAL - 检修管理模块  ==========
+  MAINTENANCE_PLAN_TYPE = 'maintenance_plan_type',           // 检修计划类型
+  MAINTENANCE_PLAN_STATUS = 'maintenance_plan_status',       // 检修计划状态
+  MAINTENANCE_TYPE = 'maintenance_type',                     // 检修类型
+  MAINTENANCE_LEVEL = 'maintenance_level',                   // 检修级别
+  MAINTENANCE_ORDER_STATUS = 'maintenance_order_status',     // 检修单状态
+  MAINTENANCE_ITEM_TYPE = 'maintenance_item_type',           // 检修项目类型
+  MAINTENANCE_ITEM_STATUS = 'maintenance_item_status',       // 检修项目状态
+  COMPLETION_QUALITY = 'completion_quality',                 // 完成质量
+  QUALITY_RATING = 'quality_rating',                         // 质量评级
+  SAFETY_RATING = 'safety_rating',                           // 安全评级
+  PRIORITY_LEVEL = 'priority_level',                         // 优先级
+  FAULT_TYPE = 'fault_type',                                 // 故障类型
+  FAULT_LEVEL = 'fault_level',                               // 故障级别
+  URGENCY_LEVEL = 'urgency_level',                           // 紧急程度
+  REPAIR_REQUEST_STATUS = 'repair_request_status',           // 报修单状态
+  REPAIR_QUALITY = 'repair_quality',                         // 修复质量
+  SATISFACTION_RATING = 'satisfaction_rating',               // 满意度评价
+
+  // ========== COAL - 煤质管理模块  ==========
+  COAL_QUALITY_ITEM_TYPE = 'coal_quality_item_type',                 // 煤质检测项目类型
+  COAL_QUALITY_PRODUCT_TYPE = 'coal_quality_product_type',           // 煤质产品类型
+  COAL_QUALITY_PRODUCT_SPEC = 'coal_quality_product_spec',           // 煤质产品规格
+  COAL_QUALITY_SAMPLING_METHOD = 'coal_quality_sampling_method',     // 煤质采样方法
+  COAL_QUALITY_DETECTION_TYPE = 'coal_quality_detection_type',       // 煤质检测类型
+  COAL_QUALITY_INSPECTION_STATUS = 'coal_quality_inspection_status', // 煤质检测状态
+  COAL_QUALITY_REVIEW_STATUS = 'coal_quality_review_status',         // 煤质审核状态
+  COAL_QUALITY_QUALIFIED = 'coal_quality_qualified',                 // 煤质合格状态
+  COAL_QUALITY_RECHECK = 'coal_quality_recheck',                     // 煤质是否复检
+  COAL_QUALITY_STANDARD_TYPE = 'coal_quality_standard_type',         // 煤质标准类型
+  COAL_QUALITY_STANDARD_STATUS = 'coal_quality_standard_status',     // 煤质标准状态
+  COAL_QUALITY_ALERT_TYPE = 'coal_quality_alert_type',               // 煤质预警类型
+  COAL_QUALITY_ALERT_LEVEL = 'coal_quality_alert_level',             // 煤质预警级别
+  COAL_QUALITY_ALERT_STATUS = 'coal_quality_alert_status',           // 煤质预警状态
+  COAL_QUALITY_AUTO_ALERT = 'coal_quality_auto_alert',               // 煤质是否自动预警
+  COAL_QUALITY_NOTIFICATION_SENT = 'coal_quality_notification_sent', // 煤质是否已发送通知
+  COAL_QUALITY_PERFORMANCE_RATING = 'coal_quality_performance_rating', // 煤质性能评级
+
+  // ========== COAL - 安全管理模块  ==========
+  COAL_SAFETY_CATEGORY_TYPE = 'coal_safety_category_type',             // 安全分类类型
+  COAL_SAFETY_PLAN_TYPE = 'coal_safety_plan_type',                     // 安全计划类型
+  COAL_SAFETY_CHECK_CYCLE = 'coal_safety_check_cycle',                 // 安全检查周期
+  COAL_SAFETY_PLAN_STATUS = 'coal_safety_plan_status',                 // 安全计划状态
+  COAL_SAFETY_APPROVAL_STATUS = 'coal_safety_approval_status',         // 安全审批状态
+  COAL_SAFETY_CHECK_TYPE = 'coal_safety_check_type',                   // 安全检查类型
+  COAL_SAFETY_CHECK_RESULT = 'coal_safety_check_result',               // 安全检查结果
+  COAL_SAFETY_RISK_LEVEL = 'coal_safety_risk_level',                   // 安全风险等级
+  COAL_SAFETY_RECTIFICATION_STATUS = 'coal_safety_rectification_status', // 安全整改状态
+  COAL_SAFETY_RECORD_STATUS = 'coal_safety_record_status',             // 安全记录状态
+  COAL_SAFETY_ACCIDENT_TYPE = 'coal_safety_accident_type',             // 安全事故类型
+  COAL_SAFETY_ACCIDENT_LEVEL = 'coal_safety_accident_level',           // 安全事故等级
+  COAL_SAFETY_ACCIDENT_STATUS = 'coal_safety_accident_status',         // 安全事故状态
+  COAL_SAFETY_ATTACHMENT_TYPE = 'coal_safety_attachment_type',          // 安全附件类型
+  COAL_SAFETY_ATTACHMENT_BUSINESS_TYPE = 'coal_safety_attachment_business_type', // 安全附件业务类型
+
+  // ========== COAL - 能源管理模块  ==========
+  COAL_ENERGY_TYPE = 'coal_energy_type',                               // 能源类型
+  COAL_ENERGY_DATA_SOURCE = 'coal_energy_data_source',                 // 能源数据来源
+  COAL_ENERGY_VERIFICATION_STATUS = 'coal_energy_verification_status', // 能源验证状态
+  COAL_ENERGY_STATISTICS_TYPE = 'coal_energy_statistics_type',         // 能源统计类型
+  COAL_ENERGY_STATISTICS_STATUS = 'coal_energy_statistics_status',     // 能源统计状态
+  COAL_ENERGY_ALERT_TYPE = 'coal_energy_alert_type',                   // 能源预警类型
+  COAL_ENERGY_ALERT_LEVEL = 'coal_energy_alert_level',                 // 能源预警级别
+  COAL_ENERGY_ALERT_STATUS = 'coal_energy_alert_status',               // 能源预警状态
+  COAL_ENERGY_IS_REAL_TIME = 'coal_energy_is_real_time'                // 是否实时采集
 
 }

@@ -4,6 +4,7 @@ import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.mybatis.core.mapper.BaseMapperX;
 import cn.iocoder.yudao.framework.mybatis.core.query.LambdaQueryWrapperX;
 import cn.iocoder.yudao.framework.mybatis.core.util.MyBatisUtils;
+import cn.iocoder.yudao.framework.tenant.core.aop.TenantIgnore;
 import cn.iocoder.yudao.module.system.controller.admin.tenant.vo.tenant.TenantPageReqVO;
 import cn.iocoder.yudao.module.system.dal.dataobject.tenant.TenantDO;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,6 +24,7 @@ public interface TenantMapper extends BaseMapperX<TenantDO> {
                 .orderByDesc(TenantDO::getId));
     }
 
+    @TenantIgnore
     default TenantDO selectByName(String name) {
         return selectOne(TenantDO::getName, name);
     }

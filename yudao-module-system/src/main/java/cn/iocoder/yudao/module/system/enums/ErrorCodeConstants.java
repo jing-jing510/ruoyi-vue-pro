@@ -305,6 +305,11 @@ public interface ErrorCodeConstants {
     // ========== 生产日报附件上传 TODO 补充编号 ==========
     ErrorCode DAILY_REPORT_ATTACH_NOT_EXISTS = new ErrorCode(1_002_093_000, "生产日报附件上传不存在");
 
+    ErrorCode MARKET_ANALYSIS_NOT_EXISTS = new ErrorCode(1_002_094_000, "市场分析不存在");
 
+    ErrorCode MARKET_WASHING_REPORT_NOT_EXISTS = new ErrorCode(1_002_095_000, "洗选分析报告不存在");
 
+    ErrorCode MARKET_COST_ANALYSIS_NOT_EXISTS = new ErrorCode(1_002_096_000, "综合成本核算不存在");
+
+    ErrorCode HL_PRODUCTION_DAILY_REPORT_NOT_EXISTS = new ErrorCode(1_002_097_000, "红林生产日报不存在");
 }

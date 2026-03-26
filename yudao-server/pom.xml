@@ -140,6 +140,12 @@
             <artifactId>yudao-module-coal</artifactId>
             <version>${revision}</version>
         </dependency>
+<!--        OPC UA模块-->
+        <dependency>
+            <groupId>cn.iocoder.boot</groupId>
+            <artifactId>yudao-module-opcua</artifactId>
+            <version>${revision}</version>
+        </dependency>
 
     </dependencies>
 

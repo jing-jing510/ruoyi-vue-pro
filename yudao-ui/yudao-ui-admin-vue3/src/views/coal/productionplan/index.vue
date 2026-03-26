@@ -181,12 +181,12 @@
       <el-table-column label="计划中煤产量(吨)" align="center" prop="middlingCoalPlan" />
       <el-table-column label="计划煤泥产量(吨)" align="center" prop="slimePlan" />
       <el-table-column label="计划矸石产量(吨)" align="center" prop="ganguePlan" />
-      <el-table-column label="末煤灰分(%)" align="center" prop="fineCoalAsh" />
-      <el-table-column label="粒煤灰分(%)" align="center" prop="granularCoalAsh" />
-      <el-table-column label="大块煤灰分(%)" align="center" prop="largeBlockCoalAsh" />
-      <el-table-column label="中块煤灰分(%)" align="center" prop="mediumBlockCoalAsh" />
-      <el-table-column label="小块煤灰分(%)" align="center" prop="smallBlockCoalAsh" />
-      <el-table-column label="中煤灰分(%)" align="center" prop="middlingCoalAsh" />
+<!--      <el-table-column label="末煤灰分(%)" align="center" prop="fineCoalAsh" />-->
+<!--      <el-table-column label="粒煤灰分(%)" align="center" prop="granularCoalAsh" />-->
+<!--      <el-table-column label="大块煤灰分(%)" align="center" prop="largeBlockCoalAsh" />-->
+<!--      <el-table-column label="中块煤灰分(%)" align="center" prop="mediumBlockCoalAsh" />-->
+<!--      <el-table-column label="小块煤灰分(%)" align="center" prop="smallBlockCoalAsh" />-->
+<!--      <el-table-column label="中煤灰分(%)" align="center" prop="middlingCoalAsh" />-->
 <!--      <el-table-column label="制定人ID" align="center" prop="creatorId" />-->
 <!--      <el-table-column label="审批人ID" align="center" prop="approverId" />-->
 <!--      <el-table-column-->

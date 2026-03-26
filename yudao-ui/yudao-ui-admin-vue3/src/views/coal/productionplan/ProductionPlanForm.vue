@@ -83,24 +83,24 @@
       <el-form-item label="计划矸石产量(吨)" prop="ganguePlan">
         <el-input v-model="formData.ganguePlan" placeholder="请输入计划矸石产量(吨)" />
       </el-form-item>
-      <el-form-item label="末煤灰分(%)" prop="fineCoalAsh">
-        <el-input v-model="formData.fineCoalAsh" placeholder="请输入末煤灰分(%)" />
-      </el-form-item>
-      <el-form-item label="粒煤灰分(%)" prop="granularCoalAsh">
-        <el-input v-model="formData.granularCoalAsh" placeholder="请输入粒煤灰分(%)" />
-      </el-form-item>
-      <el-form-item label="大块煤灰分(%)" prop="largeBlockCoalAsh">
-        <el-input v-model="formData.largeBlockCoalAsh" placeholder="请输入大块煤灰分(%)" />
-      </el-form-item>
-      <el-form-item label="中块煤灰分(%)" prop="mediumBlockCoalAsh">
-        <el-input v-model="formData.mediumBlockCoalAsh" placeholder="请输入中块煤灰分(%)" />
-      </el-form-item>
-      <el-form-item label="小块煤灰分(%)" prop="smallBlockCoalAsh">
-        <el-input v-model="formData.smallBlockCoalAsh" placeholder="请输入小块煤灰分(%)" />
-      </el-form-item>
-      <el-form-item label="中煤灰分(%)" prop="middlingCoalAsh">
-        <el-input v-model="formData.middlingCoalAsh" placeholder="请输入中煤灰分(%)" />
-      </el-form-item>
+<!--      <el-form-item label="末煤灰分(%)" prop="fineCoalAsh">-->
+<!--        <el-input v-model="formData.fineCoalAsh" placeholder="请输入末煤灰分(%)" />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="粒煤灰分(%)" prop="granularCoalAsh">-->
+<!--        <el-input v-model="formData.granularCoalAsh" placeholder="请输入粒煤灰分(%)" />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="大块煤灰分(%)" prop="largeBlockCoalAsh">-->
+<!--        <el-input v-model="formData.largeBlockCoalAsh" placeholder="请输入大块煤灰分(%)" />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="中块煤灰分(%)" prop="mediumBlockCoalAsh">-->
+<!--        <el-input v-model="formData.mediumBlockCoalAsh" placeholder="请输入中块煤灰分(%)" />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="小块煤灰分(%)" prop="smallBlockCoalAsh">-->
+<!--        <el-input v-model="formData.smallBlockCoalAsh" placeholder="请输入小块煤灰分(%)" />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="中煤灰分(%)" prop="middlingCoalAsh">-->
+<!--        <el-input v-model="formData.middlingCoalAsh" placeholder="请输入中煤灰分(%)" />-->
+<!--      </el-form-item>-->
 <!--      <el-form-item label="制定人ID" prop="creatorId">-->
 <!--        <el-input v-model="formData.creatorId" placeholder="请输入制定人ID" />-->
 <!--      </el-form-item>-->
